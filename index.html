@@ -1,0 +1,2165 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trung Ton | Full-stack Developer Portfolio</title>
+  <meta name="description" content="Portfolio của Trung Ton - Full-stack Developer chuyên React/Next.js, TypeScript, Node.js, PostgreSQL. Có kinh nghiệm xây dựng sản phẩm thực tế end-to-end từ CSDL đến CI/CD." />
+  <meta name="keywords" content="Trung Ton, Full-stack Developer, Next.js, React, TypeScript, Node.js, PostgreSQL, Docker, Portfolio, Web Developer Hanoi" />
+  <meta name="author" content="Trung Ton" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://trungton.dev/" />
+  <meta property="og:title" content="Trung Ton | Full-stack Developer Portfolio" />
+  <meta property="og:description" content="Full-stack Developer với tư duy end-to-end: CSDL PostgreSQL, API Node.js/Next.js, giao diện TypeScript/React và triển khai Docker/CI-CD." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="Trung Ton | Full-stack Developer Portfolio" />
+  <meta property="twitter:description" content="Full-stack Developer với tư duy end-to-end: CSDL PostgreSQL, API Node.js/Next.js, giao diện TypeScript/React và triển khai Docker/CI-CD." />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://trungton.dev/" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232563eb'/><text x='50' y='64' font-size='48' font-weight='bold' font-family='monospace' fill='white' text-anchor='middle'>TT</text></svg>" />
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            },
+            surface: {
+              light: '#ffffff',
+              'light-alt': '#f8fafc',
+              dark: '#09090b',
+              'dark-card': '#121215',
+              'dark-alt': '#18181b',
+              'dark-border': '#27272a',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* CSS Variables & Theme Defaults */
+    :root {
+      --bg-primary: #fafafa;
+      --bg-card: #ffffff;
+      --bg-card-alt: #f4f4f5;
+      --border-subtle: #e4e4e7;
+      --text-primary: #09090b;
+      --text-secondary: #52525b;
+      --text-muted: #71717a;
+      --accent: #2563eb;
+      --accent-subtle: #dbeafe;
+      --code-bg: #f1f5f9;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
+    }
+
+    .dark {
+      --bg-primary: #09090b;
+      --bg-card: #111114;
+      --bg-card-alt: #18181b;
+      --border-subtle: #27272a;
+      --text-primary: #f4f4f5;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent: #3b82f6;
+      --accent-subtle: #1e293b;
+      --code-bg: #18181b;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+      --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.6);
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      overflow-x: hidden;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    /* Scroll Margin for fixed header */
+    section {
+      scroll-margin-top: 5.5rem;
+    }
+
+    /* Accessibility focus styling */
+    *:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Custom subtle grid background */
+    .bg-grid-pattern {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(120, 120, 120, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(120, 120, 120, 0.07) 1px, transparent 1px);
+    }
+
+    .dark .bg-grid-pattern {
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+
+    /* Respect prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Print styles for CV */
+    @media print {
+      body { background: white !important; color: black !important; }
+      nav, footer, #contact, #theme-toggle-btn, #lang-toggle-btn, .no-print { display: none !important; }
+      section { page-break-inside: avoid; }
+    }
+  </style>
+
+  <!-- Structured Data JSON-LD for Search Engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Trung Ton",
+    "jobTitle": "Full-stack Developer",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Hà Nội",
+      "addressCountry": "Việt Nam"
+    },
+    "email": "mailto:trungton883@gmail.com",
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "BTEC FPT British College"
+    },
+    "knowsAbout": ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Docker", "Tailwind CSS", "CI/CD", "REST API", "Web Security"]
+  }
+  </script>
+</head>
+
+<body class="selection:bg-brand-500/20 selection:text-brand-600 dark:selection:text-brand-400">
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-600 focus:text-white focus:rounded-md focus:shadow-lg focus:outline-none text-sm font-medium">
+    Skip to main content / Chuyển đến nội dung chính
+  </a>
+
+  <!-- Header / Navigation -->
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/85 dark:bg-[#09090b]/85 backdrop-blur-md border-b border-zinc-200/80 dark:border-zinc-800/80 transition-colors duration-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo / Monogram -->
+      <a href="#" class="group flex items-center gap-2.5 font-mono text-sm tracking-tight text-zinc-900 dark:text-zinc-100 hover:opacity-90 transition-opacity">
+        <span class="w-8 h-8 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 flex items-center justify-center font-bold text-xs tracking-wider shadow-sm group-hover:bg-brand-600 dark:group-hover:bg-brand-500 transition-colors">
+          TT
+        </span>
+        <div class="flex flex-col">
+          <span class="font-bold text-sm leading-tight">Trung Ton</span>
+          <span class="text-[11px] text-zinc-500 dark:text-zinc-400 font-mono tracking-tighter">fullstack.dev</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav aria-label="Main Navigation" class="hidden md:flex items-center gap-1 text-sm font-medium text-zinc-600 dark:text-zinc-300">
+        <a href="#about" class="px-3 py-1.5 rounded-md hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors" data-i18n="nav.about">Giới thiệu</a>
+        <a href="#skills" class="px-3 py-1.5 rounded-md hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors" data-i18n="nav.skills">Kỹ năng</a>
+        <a href="#projects" class="px-3 py-1.5 rounded-md hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors" data-i18n="nav.projects">Dự án</a>
+        <a href="#experience" class="px-3 py-1.5 rounded-md hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors" data-i18n="nav.experience">Kinh nghiệm</a>
+        <a href="#education" class="px-3 py-1.5 rounded-md hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors" data-i18n="nav.education">Học vấn</a>
+        <a href="#contact" class="px-3 py-1.5 rounded-md hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors" data-i18n="nav.contact">Liên hệ</a>
+      </nav>
+
+      <!-- Right Utility Controls -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Bilingual Language Switcher -->
+        <button id="lang-toggle-btn" type="button" aria-label="Chuyển đổi ngôn ngữ / Switch language" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-mono font-medium border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 transition-colors cursor-pointer" title="Switch Language">
+          <svg class="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span id="lang-indicator" class="font-bold">VI</span>
+        </button>
+
+        <!-- Dark / Light Mode Switcher -->
+        <button id="theme-toggle-btn" type="button" aria-label="Chuyển chế độ sáng/tối" class="p-2 rounded-md border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-300 transition-colors cursor-pointer" title="Toggle Dark/Light Mode">
+          <!-- Sun Icon (shown in dark mode) -->
+          <svg id="theme-sun-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <!-- Moon Icon (shown in light mode) -->
+          <svg id="theme-moon-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+
+        <!-- Download CV Action Button -->
+        <button onclick="openCvModal()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 transition-colors cursor-pointer shadow-sm">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          <span data-i18n="nav.downloadCV">Tải CV</span>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" type="button" aria-label="Mở menu điều hướng" aria-expanded="false" class="md:hidden p-2 rounded-md border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300">
+          <svg id="menu-icon-open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="menu-icon-close" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-[#09090b]/95 px-4 pt-2 pb-4 space-y-1">
+      <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-md text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800" data-i18n="nav.about">Giới thiệu</a>
+      <a href="#skills" class="mobile-nav-link block px-3 py-2 rounded-md text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800" data-i18n="nav.skills">Kỹ năng</a>
+      <a href="#projects" class="mobile-nav-link block px-3 py-2 rounded-md text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800" data-i18n="nav.projects">Dự án</a>
+      <a href="#experience" class="mobile-nav-link block px-3 py-2 rounded-md text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800" data-i18n="nav.experience">Kinh nghiệm</a>
+      <a href="#education" class="mobile-nav-link block px-3 py-2 rounded-md text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800" data-i18n="nav.education">Học vấn</a>
+      <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-md text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800" data-i18n="nav.contact">Liên hệ</a>
+      <div class="pt-2 border-t border-zinc-200 dark:border-zinc-800">
+        <button onclick="openCvModal()" class="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-md text-sm font-medium bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          <span data-i18n="nav.downloadCV">Tải CV</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="relative">
+
+    <!-- ========================================================================= -->
+    <!-- 1. HERO SECTION -->
+    <!-- ========================================================================= -->
+    <section id="hero" class="relative pt-28 pb-16 md:pt-36 md:pb-24 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-grid-pattern">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Status Pill -->
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60 mb-6">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span data-i18n="hero.status">Sẵn sàng nhận cơ hội Full-stack (Hà Nội / Hybrid)</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          <!-- Left Column: Copy & Value Proposition -->
+          <div class="lg:col-span-7 space-y-6">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-[1.15]">
+              <span data-i18n="hero.greeting">Xin chào, tôi là Trung Ton.</span><br />
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-indigo-600 to-brand-500 dark:from-brand-400 dark:via-indigo-300 dark:to-brand-300" data-i18n="hero.role">Full-stack Developer</span>
+            </h1>
+
+            <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed font-normal max-w-2xl" data-i18n="hero.description">
+              Tập trung xây dựng các ứng dụng web thực tế với kiến trúc rõ ràng: từ thiết kế CSDL quan hệ PostgreSQL, Route Handlers bảo mật, giao diện React/Next.js tối ưu trải nghiệm đến tự động hóa đóng gói Docker và CI/CD.
+            </p>
+
+            <!-- Quick Specs Badges -->
+            <div class="flex flex-wrap gap-2 text-xs font-mono">
+              <span class="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700">Next.js 16 (App Router)</span>
+              <span class="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700">React 19</span>
+              <span class="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700">TypeScript</span>
+              <span class="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700">Node.js</span>
+              <span class="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700">PostgreSQL</span>
+              <span class="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700">Docker & CI/CD</span>
+            </div>
+
+            <!-- Call to Actions -->
+            <div class="pt-2 flex flex-wrap items-center gap-3">
+              <a href="#projects" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-brand-600 hover:bg-brand-700 text-white shadow-sm hover:shadow transition-all cursor-pointer">
+                <span data-i18n="hero.ctaPrimary">Xem các Case Study</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </a>
+
+              <a href="#contact" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-700 transition-all cursor-pointer">
+                <span data-i18n="hero.ctaSecondary">Liên hệ hợp tác</span>
+              </a>
+
+              <button onclick="copyEmail()" class="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-lg text-sm font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 border border-transparent hover:border-zinc-200 dark:hover:border-zinc-800 transition-colors" title="Copy email">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                <span id="copy-email-text">trungton883@gmail.com</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Code Snapshot Card -->
+          <div class="lg:col-span-5">
+            <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-lg overflow-hidden font-mono text-xs">
+              <!-- Window Header -->
+              <div class="px-4 py-2.5 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 flex items-center justify-between text-zinc-400">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-3 h-3 rounded-full bg-red-400/80 inline-block"></span>
+                  <span class="w-3 h-3 rounded-full bg-amber-400/80 inline-block"></span>
+                  <span class="w-3 h-3 rounded-full bg-emerald-400/80 inline-block"></span>
+                  <span class="ml-2 text-[11px] text-zinc-500 font-sans">developer-profile.ts</span>
+                </div>
+                <span class="text-[10px] text-zinc-400">UTF-8</span>
+              </div>
+
+              <!-- Code Content -->
+              <div class="p-4 sm:p-5 space-y-2 text-zinc-700 dark:text-zinc-300 leading-relaxed overflow-x-auto">
+                <div><span class="text-indigo-600 dark:text-indigo-400 font-semibold">const</span> <span class="text-amber-600 dark:text-amber-300">developer</span> = {</div>
+                <div class="pl-4">name: <span class="text-emerald-600 dark:text-emerald-400">'Trung Ton'</span>,</div>
+                <div class="pl-4">role: <span class="text-emerald-600 dark:text-emerald-400">'Full-stack Developer'</span>,</div>
+                <div class="pl-4">location: <span class="text-emerald-600 dark:text-emerald-400">'Hà Nội, Việt Nam'</span>,</div>
+                <div class="pl-4">education: <span class="text-emerald-600 dark:text-emerald-400">'Software Engineering @ BTEC FPT'</span>,</div>
+                <div class="pl-4">experience: <span class="text-brand-600 dark:text-brand-400">'~1 year production experience'</span>,</div>
+                <div class="pl-4">mindset: [</div>
+                <div class="pl-8 text-zinc-500 dark:text-zinc-400">// End-to-end autonomous ownership</div>
+                <div class="pl-8"><span class="text-emerald-600 dark:text-emerald-400">'PostgreSQL Schema & ACID Transactions'</span>,</div>
+                <div class="pl-8"><span class="text-emerald-600 dark:text-emerald-400">'Zero-trust API & Constant-time Webhook Auth'</span>,</div>
+                <div class="pl-8"><span class="text-emerald-600 dark:text-emerald-400">'Accessible & Performant React 19 UI'</span>,</div>
+                <div class="pl-8"><span class="text-emerald-600 dark:text-emerald-400">'Multi-stage Docker & GitHub Actions CI/CD'</span></div>
+                <div class="pl-4">],</div>
+                <div class="pl-4">shippingProducts: [<span class="text-amber-600 dark:text-amber-300">'Tingo'</span>, <span class="text-amber-600 dark:text-amber-300">'Bluecom'</span>, <span class="text-amber-600 dark:text-amber-300">'Oboe'</span>]</div>
+                <div>};</div>
+              </div>
+
+              <!-- Terminal Footer Status -->
+              <div class="px-4 py-2 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/40 flex items-center justify-between text-[11px] text-zinc-500">
+                <span class="flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  <span>ready-for-deployment</span>
+                </span>
+                <span class="font-mono text-zinc-400">git:(main)</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- 2. ABOUT SECTION -->
+    <!-- ========================================================================= -->
+    <section id="about" class="py-16 md:py-24 border-b border-zinc-200/80 dark:border-zinc-800/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-2xl mb-12">
+          <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 mb-2" data-i18n="about.label">
+            01 // Giới thiệu
+          </h2>
+          <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white" data-i18n="about.title">
+            Kỹ sư phần mềm tập trung vào tính thực tế và ổn định
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          
+          <!-- Narrative Text -->
+          <div class="lg:col-span-7 space-y-5 text-zinc-600 dark:text-zinc-300 leading-relaxed text-base">
+            <p data-i18n="about.p1">
+              Tôi là một Full-stack Developer với gần 1 năm kinh nghiệm thực tế, tốt nghiệp chuyên ngành Software Engineering tại BTEC FPT British College (10/2022 – 09/2025). 
+            </p>
+            <p data-i18n="about.p2">
+              Điểm mạnh nổi bật của tôi là khả năng đảm nhận <strong>toàn diện một mình (end-to-end)</strong>: từ khảo sát nghiệp vụ, thiết kế cấu trúc CSDL quan hệ chặt chẽ, xây dựng REST API bảo mật, phát triển giao diện người dùng mượt mà cho đến đóng gói container Docker và thiết lập pipeline CI/CD tự động rollback.
+            </p>
+            <p data-i18n="about.p3">
+              Tôi tin rằng một phần mềm tốt không chỉ dừng lại ở giao diện bóng bẩy, mà phải giải quyết đúng bài toán kinh doanh, ngăn chặn lỗi từ tầng dữ liệu và giữ được tính nhất quán khi tải thực tế tăng lên.
+            </p>
+            <p data-i18n="about.p4">
+              Bên cạnh kỹ thuật cá nhân, tôi từng đảm nhận vai trò Project Manager & Team Leader cho nhóm 5 thành viên trong dự án Oboe (nền tảng tự học tiếng Nhật), tích lũy kinh nghiệm thực tế về phân rã công việc, quản lý tiến độ, định hướng trải nghiệm và review code.
+            </p>
+          </div>
+
+          <!-- Highlight Capability Cards -->
+          <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+            
+            <div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2 1 3 3 3h10c2 0 3-1 3-3V7c0-2-1-3-3-3H7C5 4 4 5 4 7zM9 9h6M9 13h6M9 17h4" />
+                  </svg>
+                </div>
+                <h4 class="font-bold text-sm text-zinc-900 dark:text-white" data-i18n="about.card1.title">Khả năng làm việc End-to-End</h4>
+              </div>
+              <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-normal" data-i18n="about.card1.desc">
+                Chủ động từ schema PostgreSQL, Route Handlers, giao diện Next.js, đến đóng gói Docker multi-stage và CI/CD.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h4 class="font-bold text-sm text-zinc-900 dark:text-white" data-i18n="about.card2.title">Kinh nghiệm Sản phẩm Chạy Thật</h4>
+              </div>
+              <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-normal" data-i18n="about.card2.desc">
+                Đã xây dựng và vận hành e-commerce Tingo (tingo.vietqr.vn) và landing page doanh nghiệp Bluecom (bluecom.vn).
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-8 rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <h4 class="font-bold text-sm text-zinc-900 dark:text-white" data-i18n="about.card3.title">Lãnh đạo Nhóm & Quản lý Dự án</h4>
+              </div>
+              <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-normal" data-i18n="about.card3.desc">
+                Từng dẫn dắt đội ngũ 5 người, cân bằng giữa tốc độ bàn giao, định hướng trải nghiệm và chất lượng mã nguồn.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- 3. SKILLS SECTION WITH INTERACTIVE FILTER PILLS -->
+    <!-- ========================================================================= -->
+    <section id="skills" class="py-16 md:py-24 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-950/30">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+          <div>
+            <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 mb-2" data-i18n="skills.label">
+              02 // Năng lực kỹ thuật
+            </h2>
+            <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white" data-i18n="skills.title">
+              Công nghệ & Công cụ làm việc
+            </h3>
+          </div>
+          <p class="text-xs font-mono text-zinc-500 max-w-sm" data-i18n="skills.subtitle">
+            Tập trung vào hệ sinh thái JavaScript/TypeScript hiện đại, kết hợp nền tảng CSDL quan hệ và hạ tầng DevOps.
+          </p>
+        </div>
+
+        <!-- Filter Pills for Skills -->
+        <div class="flex flex-wrap items-center gap-2 mb-8">
+          <button onclick="filterSkills('all')" class="skill-filter-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium border border-zinc-900 dark:border-zinc-100 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 transition-colors cursor-pointer" data-filter="all" data-i18n="skills.filterAll">Tất cả (All)</button>
+          <button onclick="filterSkills('frontend')" class="skill-filter-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] text-zinc-600 dark:text-zinc-400 hover:border-zinc-400 transition-colors cursor-pointer" data-filter="frontend">Frontend</button>
+          <button onclick="filterSkills('backend')" class="skill-filter-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] text-zinc-600 dark:text-zinc-400 hover:border-zinc-400 transition-colors cursor-pointer" data-filter="backend">Backend & API</button>
+          <button onclick="filterSkills('dbdevops')" class="skill-filter-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] text-zinc-600 dark:text-zinc-400 hover:border-zinc-400 transition-colors cursor-pointer" data-filter="dbdevops">Database & DevOps</button>
+          <button onclick="filterSkills('core')" class="skill-filter-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] text-zinc-600 dark:text-zinc-400 hover:border-zinc-400 transition-colors cursor-pointer" data-filter="core" data-i18n="skills.filterCore">Nền tảng & Kỹ năng mềm</button>
+        </div>
+
+        <!-- Skills Grid Organized by Technical Domain -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="skills-grid">
+
+          <!-- Frontend Card -->
+          <div class="skill-card p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm flex flex-col justify-between transition-all duration-200" data-category="frontend">
+            <div>
+              <div class="flex items-center gap-2.5 mb-4">
+                <span class="p-2 rounded-lg bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </span>
+                <h4 class="font-bold text-base text-zinc-900 dark:text-white">Frontend</h4>
+              </div>
+              <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-4" data-i18n="skills.frontend.desc">
+                Xây dựng giao diện hướng component, hỗ trợ SSR/SSG, tối ưu hóa Core Web Vitals và khả năng truy cập (a11y).
+              </p>
+              <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">React 19</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Next.js (App Router)</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">TypeScript</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Tailwind CSS v4</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Framer Motion</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">React Hook Form</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Zod</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">next-intl</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Recharts</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Vue.js</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">HTML5/SCSS</span>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800 text-[11px] text-zinc-500 font-mono">
+              Core: React 19 + Next.js App Router
+            </div>
+          </div>
+
+          <!-- Backend Card -->
+          <div class="skill-card p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm flex flex-col justify-between transition-all duration-200" data-category="backend">
+            <div>
+              <div class="flex items-center gap-2.5 mb-4">
+                <span class="p-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+                  </svg>
+                </span>
+                <h4 class="font-bold text-base text-zinc-900 dark:text-white">Backend & API</h4>
+              </div>
+              <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-4" data-i18n="skills.backend.desc">
+                Thiết kế REST API an toàn, xử lý logic thanh toán, xác thực người dùng và tích hợp dịch vụ bên thứ ba.
+              </p>
+              <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Node.js</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Next.js Route Handlers</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">RESTful Architecture</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">JWT (HTTP-only Cookies)</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">bcrypt password hashing</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Webhook Handling</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Nodemailer</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Java</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">C#</span>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800 text-[11px] text-zinc-500 font-mono">
+              Core: Node.js + Route Handlers + Auth
+            </div>
+          </div>
+
+          <!-- Database & DevOps Card -->
+          <div class="skill-card p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm flex flex-col justify-between transition-all duration-200" data-category="dbdevops">
+            <div>
+              <div class="flex items-center gap-2.5 mb-4">
+                <span class="p-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                  </svg>
+                </span>
+                <h4 class="font-bold text-base text-zinc-900 dark:text-white">Database & DevOps</h4>
+              </div>
+              <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-4" data-i18n="skills.dbdevops.desc">
+                Mô hình hóa dữ liệu quan hệ, đảm bảo tính toàn vẹn giao dịch và tự động hóa chu kỳ triển khai phần mềm.
+              </p>
+              <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">PostgreSQL (pg driver)</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">ACID Transactions</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">JSONB & Indexing</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">MySQL</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Docker (multi-stage)</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Docker Compose</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">GitHub Actions CI/CD</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Nginx Reverse Proxy</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Trivy Security Scan</span>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800 text-[11px] text-zinc-500 font-mono">
+              Core: PostgreSQL + Docker + GitHub Actions
+            </div>
+          </div>
+
+          <!-- Fundamentals & Security Card -->
+          <div class="skill-card p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm flex flex-col justify-between transition-all duration-200" data-category="core">
+            <div>
+              <div class="flex items-center gap-2.5 mb-4">
+                <span class="p-2 rounded-lg bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </span>
+                <h4 class="font-bold text-base text-zinc-900 dark:text-white" data-i18n="skills.fundamentals.title">Kiến thức Nền tảng & Bảo mật</h4>
+              </div>
+              <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-4" data-i18n="skills.fundamentals.desc">
+                Nắm chắc các nguyên lý kỹ thuật cốt lõi giúp viết mã nguồn dễ bảo trì, mở rộng và hạn chế lỗ hổng bảo mật.
+              </p>
+              <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">OOP (Object-Oriented)</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">DSA (Cấu trúc dữ liệu & GT)</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Design Patterns</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Timing-safe Comparison</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Parameterized Queries</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">Rate Limiting</span>
+                <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">RBAC Authorization</span>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800 text-[11px] text-zinc-500 font-mono">
+              Core: OOP + Security Best Practices
+            </div>
+          </div>
+
+          <!-- Soft Skills & Leadership Card (Spans 2 cols on lg) -->
+          <div class="skill-card p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm flex flex-col justify-between md:col-span-2 lg:col-span-2 transition-all duration-200" data-category="core">
+            <div>
+              <div class="flex items-center gap-2.5 mb-4">
+                <span class="p-2 rounded-lg bg-teal-50 dark:bg-teal-950/60 text-teal-600 dark:text-teal-400">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </span>
+                <h4 class="font-bold text-base text-zinc-900 dark:text-white" data-i18n="skills.softskills.title">Kỹ năng mềm & Năng lực Quản lý</h4>
+              </div>
+              <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-4" data-i18n="skills.softskills.desc">
+                Kinh nghiệm thực chiến trong giao tiếp kỹ thuật, điều phối nhóm và nghiên cứu công nghệ mới phục vụ sản phẩm.
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-zinc-600 dark:text-zinc-300">
+                <div class="flex items-start gap-2">
+                  <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span data-i18n="skills.softskills.item1"><strong>Quản lý dự án & Team Lead:</strong> Lập kế hoạch sprint, phân chia task và review PR cho nhóm 5 người.</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span data-i18n="skills.softskills.item2"><strong>Đọc hiểu tài liệu kỹ thuật:</strong> Tiếp cận nhanh các RFC, specs API, migration guides từ tiếng Anh.</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span data-i18n="skills.softskills.item3"><strong>Khả năng tự học & thích ứng:</strong> Độc lập giải quyết các vấn đề chưa từng gặp thông qua phân tích kỹ thuật.</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span data-i18n="skills.softskills.item4"><strong>Giao tiếp minh bạch:</strong> Báo cáo tiến độ rõ ràng, chỉ rõ rủi ro kỹ thuật và phương án dự phòng.</span>
+                </div>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800 text-[11px] text-zinc-500 font-mono">
+              Mindset: Pragmatic Engineering + Active Collaboration
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- 4. PROJECTS SECTION (DETAILED CASE STUDIES) -->
+    <!-- ========================================================================= -->
+    <section id="projects" class="py-16 md:py-24 border-b border-zinc-200/80 dark:border-zinc-800/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="mb-14">
+          <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 mb-2" data-i18n="projects.label">
+            03 // Dự án nổi bật
+          </h2>
+          <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-white" data-i18n="projects.title">
+            Case Studies Kỹ thuật Chuyên sâu
+          </h3>
+          <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400 max-w-2xl" data-i18n="projects.subtitle">
+            Mỗi dự án phản ánh cách tiếp cận bài toán, các quyết định kiến trúc, đánh đổi thực tế và kinh nghiệm thu được sau khi triển khai lên môi trường sản xuất.
+          </p>
+        </div>
+
+        <div class="space-y-20">
+
+          <!-- ===================================================================== -->
+          <!-- 4.1 CASE STUDY: TINGO (Centerpiece & Deepest) -->
+          <!-- ===================================================================== -->
+          <article class="p-6 sm:p-8 lg:p-10 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm">
+            
+            <!-- Header & Meta -->
+            <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-zinc-200 dark:border-zinc-800">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5"></span>
+                    Live in Production
+                  </span>
+                  <span class="text-xs font-mono text-zinc-500">Sole Full-stack Developer</span>
+                </div>
+                <h4 class="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white tracking-tight">
+                  TINGO — Nền tảng Thương mại Điện tử Đặt mua Thiết bị Loa Thanh toán
+                </h4>
+              </div>
+
+              <!-- Live Demo CTA -->
+              <a href="https://tingo.vietqr.vn" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold font-mono bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 transition-colors shadow-sm">
+                <span>tingo.vietqr.vn</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+
+            <!-- Overview & Problem Statement -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 my-8">
+              <div class="lg:col-span-6 space-y-4 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                <div>
+                  <h5 class="text-xs font-mono font-bold uppercase text-zinc-900 dark:text-white tracking-wider mb-1" data-i18n="cs.overview">
+                    Tổng quan dự án
+                  </h5>
+                  <p data-i18n="tingo.overview">
+                    Tingo là website thương mại điện tử chuyên cung cấp thiết bị loa thông báo thanh toán dành cho chủ cửa hàng kinh doanh. Nền tảng phục vụ cả hai luồng người dùng: khách mua lẻ vãng lai và cộng tác viên (CTV) thuộc mạng lưới đối tác, tích hợp cổng quản trị nội bộ đầy đủ nghiệp vụ.
+                  </p>
+                </div>
+                <div>
+                  <h5 class="text-xs font-mono font-bold uppercase text-zinc-900 dark:text-white tracking-wider mb-1" data-i18n="cs.problem">
+                    Bài toán kinh doanh & Kỹ thuật
+                  </h5>
+                  <p data-i18n="tingo.problem">
+                    Cần một hệ thống hoàn chỉnh cho phép khách hàng đặt mua và thanh toán qua QR tự động 24/7; đồng thời cung cấp cổng CTV có cơ chế gắn mã giới thiệu, ghi nhận hoa hồng và duyệt đơn trả sau; phân quyền chặt chẽ cho ban quản trị theo dõi doanh số, quản lý kho và đối soát thanh toán minh bạch mà không phụ thuộc vào các nền tảng thương mại bên ngoài.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Tech Stack Badges -->
+              <div class="lg:col-span-6 p-5 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 space-y-4">
+                <h5 class="text-xs font-mono font-bold uppercase text-zinc-900 dark:text-white tracking-wider" data-i18n="cs.techstack">
+                  Tech Stack & Kiến trúc sử dụng
+                </h5>
+                <div class="space-y-2 text-xs">
+                  <div>
+                    <span class="font-mono font-bold text-zinc-700 dark:text-zinc-300">Frontend:</span>
+                    <span class="text-zinc-600 dark:text-zinc-400"> Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, React Hook Form, Recharts</span>
+                  </div>
+                  <div>
+                    <span class="font-mono font-bold text-zinc-700 dark:text-zinc-300">Backend & API:</span>
+                    <span class="text-zinc-600 dark:text-zinc-400"> Node.js, Next.js Route Handlers, REST API, JWT (HTTP-only Cookies), bcrypt</span>
+                  </div>
+                  <div>
+                    <span class="font-mono font-bold text-zinc-700 dark:text-zinc-300">Database:</span>
+                    <span class="text-zinc-600 dark:text-zinc-400"> PostgreSQL (driver pg native, connection pool, JSONB metadata, B-tree indexes)</span>
+                  </div>
+                  <div>
+                    <span class="font-mono font-bold text-zinc-700 dark:text-zinc-300">DevOps & CI/CD:</span>
+                    <span class="text-zinc-600 dark:text-zinc-400"> Docker (multi-stage), GitHub Actions, Nginx reverse proxy, Trivy vulnerability scan</span>
+                  </div>
+                  <div>
+                    <span class="font-mono font-bold text-zinc-700 dark:text-zinc-300">Tích hợp dịch vụ:</span>
+                    <span class="text-zinc-600 dark:text-zinc-400"> VietQR webhook đối soát, API đơn vị vận chuyển, CRM hóa đơn, Telegram bot thông báo lỗi/đơn mới</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- System Architecture Diagram (Interactive SVG) -->
+            <div class="my-8">
+              <div class="flex items-center justify-between mb-3">
+                <h5 class="text-xs font-mono font-bold uppercase text-zinc-900 dark:text-white tracking-wider flex items-center gap-2">
+                  <svg class="w-4 h-4 text-brand-600 dark:text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                  </svg>
+                  <span data-i18n="tingo.archTitle">Sơ đồ Kiến trúc Hệ thống Tingo (High-Level Architecture)</span>
+                </h5>
+                <span class="text-[11px] font-mono text-zinc-400" data-i18n="tingo.archNote">Không lộ thông tin nhạy cảm nội bộ</span>
+              </div>
+
+              <!-- SVG Architecture Visualizer -->
+              <div class="w-full overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-[#0c0c0e] p-4 sm:p-6">
+                <svg viewBox="0 0 920 440" class="w-full h-auto max-w-4xl mx-auto" style="min-width: 640px;">
+                  <defs>
+                    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.1" />
+                      <stop offset="100%" stop-color="#2563eb" stop-opacity="0.05" />
+                    </linearGradient>
+                    <linearGradient id="dbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#10b981" stop-opacity="0.1" />
+                      <stop offset="100%" stop-color="#059669" stop-opacity="0.05" />
+                    </linearGradient>
+                    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                      <path d="M 0 1 L 8 5 L 0 9 z" fill="#71717a" />
+                    </marker>
+                  </defs>
+
+                  <!-- Column 1: Client Layers -->
+                  <g transform="translate(20, 30)">
+                    <rect width="180" height="380" rx="12" fill="currentColor" class="text-zinc-100 dark:text-zinc-900/60" stroke="#71717a" stroke-width="1" stroke-dasharray="4 4" />
+                    <text x="90" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#71717a">CLIENT TIERS</text>
+                    
+                    <!-- Khách mua lẻ -->
+                    <rect x="15" y="55" width="150" height="80" rx="8" fill="#ffffff" class="dark:fill-[#18181b]" stroke="#e4e4e7" class="dark:stroke-zinc-700" stroke-width="1.5" />
+                    <text x="90" y="85" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#2563eb">Khách mua lẻ</text>
+                    <text x="90" y="105" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">Đặt mua 3 bước</text>
+                    <text x="90" y="120" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">Thanh toán VietQR</text>
+
+                    <!-- Cổng CTV đối tác -->
+                    <rect x="15" y="160" width="150" height="85" rx="8" fill="#ffffff" class="dark:fill-[#18181b]" stroke="#e4e4e7" class="dark:stroke-zinc-700" stroke-width="1.5" />
+                    <text x="90" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#8b5cf6">Cổng CTV Đối tác</text>
+                    <text x="90" y="210" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">Mã giới thiệu & CK</text>
+                    <text x="90" y="225" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">Chính sách trả sau</text>
+
+                    <!-- Trang quản trị Admin -->
+                    <rect x="15" y="270" width="150" height="85" rx="8" fill="#ffffff" class="dark:fill-[#18181b]" stroke="#e4e4e7" class="dark:stroke-zinc-700" stroke-width="1.5" />
+                    <text x="90" y="300" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#059669">Trang Quản Trị (Admin)</text>
+                    <text x="90" y="320" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">Dashboard Recharts</text>
+                    <text x="90" y="335" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">Quản lý Đơn/Kho/Audit</text>
+                  </g>
+
+                  <!-- Column 2: Application Tier (Next.js 16) -->
+                  <g transform="translate(260, 30)">
+                    <rect width="280" height="380" rx="12" fill="url(#boxGrad)" stroke="#3b82f6" stroke-width="1.5" />
+                    <text x="140" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="bold" fill="#2563eb">NEXT.JS 16 CORE PLATFORM</text>
+                    
+                    <!-- Sub-block: Presentation Layer -->
+                    <rect x="15" y="55" width="250" height="80" rx="8" fill="#ffffff" class="dark:fill-[#18181b]" stroke="#cbd5e1" class="dark:stroke-zinc-700" stroke-width="1" />
+                    <text x="140" y="80" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#0f172a" class="dark:fill-zinc-100">Presentation Layer</text>
+                    <text x="140" y="100" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#64748b">React 19 + Tailwind CSS v4</text>
+                    <text x="140" y="118" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#64748b">React Hook Form + Zod Schema</text>
+
+                    <!-- Sub-block: Security & Route Handlers -->
+                    <rect x="15" y="150" width="250" height="110" rx="8" fill="#ffffff" class="dark:fill-[#18181b]" stroke="#cbd5e1" class="dark:stroke-zinc-700" stroke-width="1" />
+                    <text x="140" y="175" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#0f172a" class="dark:fill-zinc-100">API Route Handlers</text>
+                    <text x="140" y="195" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#64748b">• Server-side Price Calc (Anti-tamper)</text>
+                    <text x="140" y="213" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#64748b">• JWT Auth (HttpOnly Cookie) + RBAC</text>
+                    <text x="140" y="231" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#64748b">• Constant-time Webhook Verifier</text>
+                    <text x="140" y="249" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#64748b">• In-Memory Rate Limiter & Honeypots</text>
+
+                    <!-- Sub-block: Data Access Layer -->
+                    <rect x="15" y="275" width="250" height="75" rx="8" fill="#ffffff" class="dark:fill-[#18181b]" stroke="#cbd5e1" class="dark:stroke-zinc-700" stroke-width="1" />
+                    <text x="140" y="300" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#0f172a" class="dark:fill-zinc-100">Data Access & Transactions</text>
+                    <text x="140" y="320" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#64748b">pg Driver Connection Pool</text>
+                    <text x="140" y="338" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#64748b">ACID Transactions & Soft-delete</text>
+                  </g>
+
+                  <!-- Column 3: Database Tier -->
+                  <g transform="translate(600, 30)">
+                    <rect width="140" height="180" rx="12" fill="url(#dbGrad)" stroke="#10b981" stroke-width="1.5" />
+                    <text x="70" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="bold" fill="#059669">DATABASE</text>
+                    <rect x="12" y="50" width="116" height="110" rx="8" fill="#ffffff" class="dark:fill-[#18181b]" stroke="#10b981" stroke-width="1" />
+                    <text x="70" y="75" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#0f172a" class="dark:fill-zinc-100">PostgreSQL</text>
+                    <text x="70" y="95" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#64748b">~16 Tables</text>
+                    <text x="70" y="112" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#64748b">Orders / Stock</text>
+                    <text x="70" y="128" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#64748b">Audit / JSONB</text>
+                    <text x="70" y="144" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#64748b">Indexes & Pools</text>
+                  </g>
+
+                  <!-- Column 3: External Services & DevOps -->
+                  <g transform="translate(600, 230)">
+                    <rect width="140" height="180" rx="12" fill="currentColor" class="text-zinc-100 dark:text-zinc-900/60" stroke="#71717a" stroke-width="1" stroke-dasharray="4 4" />
+                    <text x="70" y="25" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="bold" fill="#71717a">EXT SERVICES</text>
+                    <rect x="12" y="40" width="116" height="125" rx="8" fill="#ffffff" class="dark:fill-[#18181b]" stroke="#cbd5e1" class="dark:stroke-zinc-700" stroke-width="1" />
+                    <text x="70" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#2563eb">VietQR Webhook</text>
+                    <text x="70" y="82" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#f59e0b">Shipping Partner</text>
+                    <text x="70" y="102" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#10b981">Telegram Bot</text>
+                    <text x="70" y="122" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6366f1">Docker Multi-stage</text>
+                    <text x="70" y="142" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#71717a">Trivy + Nginx</text>
+                  </g>
+
+                  <!-- Flow Arrows -->
+                  <!-- Client to Next.js -->
+                  <line x1="185" y1="125" x2="255" y2="125" stroke="#71717a" stroke-width="1.5" marker-end="url(#arrow)" />
+                  <line x1="185" y1="235" x2="255" y2="235" stroke="#71717a" stroke-width="1.5" marker-end="url(#arrow)" />
+                  <line x1="185" y1="335" x2="255" y2="335" stroke="#71717a" stroke-width="1.5" marker-end="url(#arrow)" />
+
+                  <!-- Next.js to DB -->
+                  <path d="M 540 120 L 595 120" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrow)" fill="none" />
+                  <path d="M 540 310 L 595 310" stroke="#71717a" stroke-width="1.5" marker-end="url(#arrow)" fill="none" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Key Engineering Contributions -->
+            <div class="my-8 space-y-3">
+              <h5 class="text-xs font-mono font-bold uppercase text-zinc-900 dark:text-white tracking-wider mb-3" data-i18n="cs.contributions">
+                Các đóng góp kỹ thuật cốt lõi (Core Contributions)
+              </h5>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-zinc-600 dark:text-zinc-300">
+                <div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/40">
+                  <div class="font-bold text-zinc-900 dark:text-white mb-1" data-i18n="tingo.c1.title">Thiết kế CSDL PostgreSQL (~16 bảng quan hệ)</div>
+                  <p class="leading-relaxed" data-i18n="tingo.c1.desc">Quản lý thực thể: đơn hàng, khách hàng, CTV, biến thể sản phẩm, tồn kho, lịch sử giao dịch và nhật ký thay đổi. Sử dụng soft-delete và transaction cho toàn bộ luồng tạo đơn và xác nhận thanh toán.</p>
+                </div>
+                <div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/40">
+                  <div class="font-bold text-zinc-900 dark:text-white mb-1" data-i18n="tingo.c2.title">Luồng thanh toán VietQR & Đối soát Webhook tự động</div>
+                  <p class="leading-relaxed" data-i18n="tingo.c2.desc">Tạo mã QR động gắn mã đơn hàng duy nhất; webhook đối soát khớp tiền và chuyển trạng thái đơn hàng tự động ngay khi ngân hàng xác nhận, giảm tải can thiệp thủ công.</p>
+                </div>
+                <div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/40">
+                  <div class="font-bold text-zinc-900 dark:text-white mb-1" data-i18n="tingo.c3.title">Phân quyền 3 cấp (Role-Based Access Control)</div>
+                  <p class="leading-relaxed" data-i18n="tingo.c3.desc">Khách vãng lai thanh toán trước; CTV có mã giới thiệu, theo dõi hoa hồng và chính sách trả sau; Quản trị viên phân tách quyền quản lý đơn, kiểm kho và phân tích doanh thu.</p>
+                </div>
+                <div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/40">
+                  <div class="font-bold text-zinc-900 dark:text-white mb-1" data-i18n="tingo.c4.title">Trang quản trị (Admin Dashboard & Audit Trail)</div>
+                  <p class="leading-relaxed" data-i18n="tingo.c4.desc">Trực quan hóa dữ liệu qua biểu đồ Recharts, xuất báo cáo CSV/Excel, và cơ chế ghi log lịch sử thay đổi dạng trước/sau (before/after snapshot) để phục vụ kiểm toán nội bộ.</p>
+                </div>
+                <div class="p-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/40 md:col-span-2">
+                  <div class="font-bold text-zinc-900 dark:text-white mb-1" data-i18n="tingo.c5.title">CI/CD Pipeline 4 giai đoạn & Tự động Rollback</div>
+                  <p class="leading-relaxed" data-i18n="tingo.c5.desc">Xây dựng pipeline GitHub Actions gồm: Build & Test → Quét bảo mật container với Trivy → Deploy tự động qua SSH lên VPS Nginx → Health-check endpoint; tự động rollback phiên bản trước nếu health-check thất bại.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Deep Dive: 4 Engineering Challenges & Solutions -->
+            <div class="my-8 pt-6 border-t border-zinc-200 dark:border-zinc-800">
+              <h5 class="text-xs font-mono font-bold uppercase text-brand-600 dark:text-brand-400 tracking-wider mb-4 flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <span data-i18n="cs.challenges">Thách thức Kỹ thuật & Giải pháp Thực tế (4 Deep-Dives)</span>
+              </h5>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                
+                <!-- Challenge 1 -->
+                <div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-[#151518] space-y-2.5">
+                  <div class="flex items-center gap-2 font-mono text-xs font-bold text-zinc-900 dark:text-white">
+                    <span class="w-5 h-5 rounded-full bg-brand-100 dark:bg-brand-900/60 text-brand-700 dark:text-brand-300 flex items-center justify-center text-[10px]">1</span>
+                    <span data-i18n="tingo.ch1.title">Tồn kho ảo do giỏ hàng bị bỏ dở (Ghost Inventory)</span>
+                  </div>
+                  <div class="text-xs space-y-1.5 text-zinc-600 dark:text-zinc-300" data-i18n="tingo.ch1.body">
+                    <p><strong class="text-zinc-800 dark:text-zinc-200">Vấn đề:</strong> Nếu trừ kho ngay khi người dùng bấm "Đặt hàng", giỏ hàng bị bỏ dở sẽ giữ chân tồn kho, khiến khách hàng thực sự khác không thể mua được.</p>
+                    <p><strong class="text-zinc-800 dark:text-zinc-200">Giải pháp:</strong> Chỉ thực hiện trừ kho khi hệ thống nhận webhook thanh toán thành công, đặt toàn bộ cập nhật trạng thái đơn và giảm số lượng kho trong cùng một CSDL Transaction có tính toàn vẹn cao.</p>
+                    <p><strong class="text-zinc-800 dark:text-zinc-200">Đánh đổi & Bài học:</strong> Chấp nhận khả năng oversell hy hữu nếu nhiều khách hàng quét mã thanh toán cùng lúc cho món hàng cuối cùng. Đã thiết kế sẵn hướng cải tiến: cơ chế giữ hàng có thời hạn (temporary reservation với TTL và hàng đợi xử lý timeout).</p>
+                  </div>
+                </div>
+
+                <!-- Challenge 2 -->
+                <div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-[#151518] space-y-2.5">
+                  <div class="flex items-center gap-2 font-mono text-xs font-bold text-zinc-900 dark:text-white">
+                    <span class="w-5 h-5 rounded-full bg-brand-100 dark:bg-brand-900/60 text-brand-700 dark:text-brand-300 flex items-center justify-center text-[10px]">2</span>
+                    <span data-i18n="tingo.ch2.title">Chống sửa đổi giá từ Client (Zero-trust Price Tampering)</span>
+                  </div>
+                  <div class="text-xs space-y-1.5 text-zinc-600 dark:text-zinc-300" data-i18n="tingo.ch2.body">
+                    <p><strong class="text-zinc-800 dark:text-zinc-200">Vấn đề:</strong> Kẻ tấn công có thể can thiệp payload gửi lên API để sửa đơn giá hoặc tổng tiền thanh toán xuống mức thấp.</p>
+                    <p><strong class="text-zinc-800 dark:text-zinc-200">Giải pháp:</strong> Server coi client là hoàn toàn không đáng tin cậy. Route Handler chỉ nhận danh sách mã sản phẩm và số lượng mua. Server tự truy vấn giá gốc từ CSDL, kiểm tra chính sách chiết khấu của CTV theo phiên đăng nhập, tự tính phí vận chuyển và xuất ra tổng tiền chốt để sinh mã QR.</p>
+                    <p><strong class="text-zinc-800 dark:text-zinc-200">Bài học:</strong> Loại bỏ hoàn toàn lỗ hổng sai lệch giá tiền, bảo vệ doanh thu kinh doanh ngay từ kiến trúc API.</p>
+                  </div>
+                </div>
+
+                <!-- Challenge 3 -->
+                <div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-[#151518] space-y-2.5">
+                  <div class="flex items-center gap-2 font-mono text-xs font-bold text-zinc-900 dark:text-white">
+                    <span class="w-5 h-5 rounded-full bg-brand-100 dark:bg-brand-900/60 text-brand-700 dark:text-brand-300 flex items-center justify-center text-[10px]">3</span>
+                    <span data-i18n="tingo.ch3.title">Chống Bot Spam mà không làm giảm UX (Captcha-less)</span>
+                  </div>
+                  <div class="text-xs space-y-1.5 text-zinc-600 dark:text-zinc-300" data-i18n="tingo.ch3.body">
+                    <p><strong class="text-zinc-800 dark:text-zinc-200">Vấn đề:</strong> Form đặt hàng cần đơn giản tối đa để tăng tỷ lệ chuyển đổi, tránh gây phiền hà bởi CAPTCHA nhưng vẫn phải chặn bot spam sinh đơn ảo.</p>
+                    <p><strong class="text-zinc-800 dark:text-zinc-200">Giải pháp:</strong> Kết hợp trường bẫy ẩn (honeypot fields), thuật toán rate limiting theo địa chỉ IP và số điện thoại, validate schema bằng Zod và luôn dùng truy vấn tham số hóa chống SQL Injection.</p>
+                    <p><strong class="text-zinc-800 dark:text-zinc-200">Đánh đổi & Bài học:</strong> Hiện tại bộ đếm rate limit lưu trong bộ nhớ server (in-memory sliding window). Khi quy mô hệ thống mở rộng nhiều container, sẽ nâng cấp chuyển sang Redis cluster phân tán.</p>
+                  </div>
+                </div>
+
+                <!-- Challenge 4 -->
+                <div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-[#151518] space-y-2.5">
+                  <div class="flex items-center gap-2 font-mono text-xs font-bold text-zinc-900 dark:text-white">
+                    <span class="w-5 h-5 rounded-full bg-brand-100 dark:bg-brand-900/60 text-brand-700 dark:text-brand-300 flex items-center justify-center text-[10px]">4</span>
+                    <span data-i18n="tingo.ch4.title">Bảo mật Webhook & Phòng chống Timing Attack</span>
+                  </div>
+                  <div class="text-xs space-y-1.5 text-zinc-600 dark:text-zinc-300" data-i18n="tingo.ch4.body">
+                    <p><strong class="text-zinc-800 dark:text-zinc-200">Vấn đề:</strong> Endpoint webhook ngân hàng tiếp nhận tín hiệu thanh toán là mục tiêu giả mạo nguy hiểm; việc kiểm tra secret bằng phép so sánh chuỗi thông thường có nguy cơ rò rỉ qua tấn công thời gian (timing attacks).</p>
+                    <p><strong class="text-zinc-800 dark:text-zinc-200">Giải pháp:</strong> Sử dụng hàm so sánh thời gian hằng số (`crypto.timingSafeEqual`) để đối chiếu webhook secret. Áp dụng cơ chế fail-closed: tự động từ chối ngay mọi request nếu môi trường thiếu khóa secret hoặc payload sai lệch định dạng.</p>
+                    <p><strong class="text-zinc-800 dark:text-zinc-200">Bài học:</strong> Bảo vệ tuyệt đối cổng nhận tiền, không có tình trạng giả mạo giao dịch thành công.</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- UI Preview Frame Placeholder -->
+            <div class="mt-8 pt-6 border-t border-zinc-200 dark:border-zinc-800">
+              <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-100 dark:bg-zinc-900/80">
+                <div class="px-4 py-2 bg-zinc-200/70 dark:bg-zinc-800/80 flex items-center justify-between text-xs text-zinc-500 font-mono">
+                  <span>Product Preview Mockup &mdash; Live Production URL</span>
+                  <a href="https://tingo.vietqr.vn" target="_blank" rel="noopener noreferrer" class="hover:text-brand-600 dark:hover:text-brand-400">tingo.vietqr.vn &rarr;</a>
+                </div>
+                <div class="p-8 sm:p-12 text-center flex flex-col items-center justify-center space-y-3">
+                  <div class="w-12 h-12 rounded-full bg-brand-100 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 flex items-center justify-center">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                  </div>
+                  <h6 class="font-bold text-sm text-zinc-900 dark:text-white" data-i18n="tingo.previewTitle">Giao diện Đặt hàng & Cổng Quản trị Tingo</h6>
+                  <p class="text-xs text-zinc-500 max-w-md" data-i18n="tingo.previewDesc">
+                    Hệ thống đang phục vụ khách hàng thật trên môi trường production. Bạn có thể trải nghiệm trực tiếp luồng mua hàng và giao diện người dùng tại liên kết bên dưới.
+                  </p>
+                  <a href="https://tingo.vietqr.vn" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold bg-brand-600 hover:bg-brand-700 text-white transition-colors">
+                    <span data-i18n="tingo.previewBtn">Truy cập Tingo Live</span>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </article>
+
+
+          <!-- ===================================================================== -->
+          <!-- 4.2 CASE STUDY: BLUECOM -->
+          <!-- ===================================================================== -->
+          <article class="p-6 sm:p-8 lg:p-10 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm">
+            
+            <!-- Header & Meta -->
+            <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-zinc-200 dark:border-zinc-800">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-1.5"></span>
+                    Enterprise Landing Page
+                  </span>
+                  <span class="text-xs font-mono text-zinc-500">Sole Developer (UI, Code, Packaging, Deploy)</span>
+                </div>
+                <h4 class="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white tracking-tight">
+                  BLUECOM — Landing Page Doanh nghiệp Song ngữ & Hệ thống Tài liệu
+                </h4>
+              </div>
+
+              <!-- Live Link -->
+              <a href="https://bluecom.vn" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold font-mono bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 transition-colors shadow-sm">
+                <span>bluecom.vn</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+
+            <!-- Overview & Tech Stack -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 my-8">
+              <div class="lg:col-span-6 space-y-4 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                <div>
+                  <h5 class="text-xs font-mono font-bold uppercase text-zinc-900 dark:text-white tracking-wider mb-1" data-i18n="cs.overview">
+                    Tổng quan dự án
+                  </h5>
+                  <p data-i18n="bluecom.overview">
+                    Website giới thiệu giải pháp thanh toán QR và hệ sinh thái giải pháp số của công ty Bluecom. Bao gồm trang chủ đa section với nhiều tương tác hiện đại và 7 trang tài liệu hướng dẫn tích hợp chi tiết (API, phần mềm, thiết bị), hỗ trợ song ngữ Tiếng Việt và Tiếng Anh.
+                  </p>
+                </div>
+                <div>
+                  <h5 class="text-xs font-mono font-bold uppercase text-zinc-900 dark:text-white tracking-wider mb-1" data-i18n="cs.role">
+                    Vai trò & Đóng góp
+                  </h5>
+                  <p data-i18n="bluecom.role">
+                    Thực hiện một mình toàn bộ dự án từ hiện thực hóa giao diện, micro-interactions, tối ưu SEO, quốc tế hóa với next-intl, form tư vấn validate Zod kết hợp honeypot, đến đóng gói Docker multi-stage và CI/CD deploy tự động kèm thông báo Telegram.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Tech Stack Badges -->
+              <div class="lg:col-span-6 p-5 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 space-y-4">
+                <h5 class="text-xs font-mono font-bold uppercase text-zinc-900 dark:text-white tracking-wider" data-i18n="cs.techstack">
+                  Tech Stack & Công cụ sử dụng
+                </h5>
+                <div class="space-y-2 text-xs">
+                  <div>
+                    <span class="font-mono font-bold text-zinc-700 dark:text-zinc-300">Framework:</span>
+                    <span class="text-zinc-600 dark:text-zinc-400"> Next.js 16, React 19, TypeScript</span>
+                  </div>
+                  <div>
+                    <span class="font-mono font-bold text-zinc-700 dark:text-zinc-300">Styling & Motion:</span>
+                    <span class="text-zinc-600 dark:text-zinc-400"> Tailwind CSS v4, Framer Motion, next/font (Self-hosted)</span>
+                  </div>
+                  <div>
+                    <span class="font-mono font-bold text-zinc-700 dark:text-zinc-300">i18n & Form:</span>
+                    <span class="text-zinc-600 dark:text-zinc-400"> next-intl (VI/EN routing), React Hook Form + Zod, Nodemailer</span>
+                  </div>
+                  <div>
+                    <span class="font-mono font-bold text-zinc-700 dark:text-zinc-300">DevOps & Server:</span>
+                    <span class="text-zinc-600 dark:text-zinc-400"> Docker Multi-stage, GitHub Actions, GHCR, Nginx (SSL, gzip, caching)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Deep Dive: 3 Technical Challenges -->
+            <div class="my-8 pt-6 border-t border-zinc-200 dark:border-zinc-800">
+              <h5 class="text-xs font-mono font-bold uppercase text-brand-600 dark:text-brand-400 tracking-wider mb-4 flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <span data-i18n="bluecom.chTitle">Thách thức Kỹ thuật & Giải pháp Thực tế (3 Deep-Dives)</span>
+              </h5>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                
+                <!-- Challenge 1 -->
+                <div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-[#151518] space-y-2">
+                  <div class="font-mono text-xs font-bold text-zinc-900 dark:text-white" data-i18n="bluecom.ch1.title">
+                    1. Animation bị mất ở bản build Tailwind CSS v4
+                  </div>
+                  <div class="text-xs space-y-1.5 text-zinc-600 dark:text-zinc-300" data-i18n="bluecom.ch1.body">
+                    <p><strong class="text-zinc-800 dark:text-zinc-200">Vấn đề:</strong> Trong Tailwind CSS v4 với cấu hình mới bằng CSS, một số animation tùy biến bị loại bỏ khỏi gói build production do cơ chế purge.</p>
+                    <p><strong class="text-zinc-800 dark:text-zinc-200">Giải pháp:</strong> Định nghĩa trực tiếp các keyframes và animation vào chỉ thị `@theme inline` trong file CSS gốc, đảm bảo trình biên dịch luôn nhận diện và bundle đầy đủ hiệu ứng vào output CSS cuối.</p>
+                  </div>
+                </div>
+
+                <!-- Challenge 2 -->
+                <div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-[#151518] space-y-2">
+                  <div class="font-mono text-xs font-bold text-zinc-900 dark:text-white" data-i18n="bluecom.ch2.title">
+                    2. Định tuyến đa ngôn ngữ chuẩn SEO (next-intl)
+                  </div>
+                  <div class="text-xs space-y-1.5 text-zinc-600 dark:text-zinc-300" data-i18n="bluecom.ch2.body">
+                    <p><strong class="text-zinc-800 dark:text-zinc-200">Vấn đề:</strong> Cần hỗ trợ song ngữ Tiếng Việt và Tiếng Anh liền mạch nhưng URL tiếng Việt mặc định không được có tiền tố thừa `/vi` để tối ưu SEO nội địa.</p>
+                    <p><strong class="text-zinc-800 dark:text-zinc-200">Giải pháp:</strong> Cấu hình middleware `localePrefix: 'as-needed'`, kết hợp thẻ `hreflang` chuẩn và metadata động đồng bộ với sitemap XML và schema JSON-LD.</p>
+                  </div>
+                </div>
+
+                <!-- Challenge 3 -->
+                <div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-[#151518] space-y-2">
+                  <div class="font-mono text-xs font-bold text-zinc-900 dark:text-white" data-i18n="bluecom.ch3.title">
+                    3. Fixed Header che khuất tiêu đề khi scroll anchor
+                  </div>
+                  <div class="text-xs space-y-1.5 text-zinc-600 dark:text-zinc-300" data-i18n="bluecom.ch3.body">
+                    <p><strong class="text-zinc-800 dark:text-zinc-200">Vấn đề:</strong> Header cố định ở đỉnh màn hình khiến các liên kết cuộn trang (#section-id) bị che mất phần đầu nội dung khi nhảy tới vị trí tương ứng.</p>
+                    <p><strong class="text-zinc-800 dark:text-zinc-200">Giải pháp:</strong> Áp dụng thuộc tính CSS hiện đại `scroll-margin-top` đồng nhất cho tất cả các thẻ section, đảm bảo cuộn mượt mà và tiêu đề luôn hiển thị với khoảng đệm hợp lý bên dưới header.</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </article>
+
+
+          <!-- ===================================================================== -->
+          <!-- 4.3 CASE STUDY: OBOE & 4.4 HERBAL TEA (Compact Format) -->
+          <!-- ===================================================================== -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- OBOE -->
+            <article class="p-6 sm:p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-3">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium bg-purple-100 dark:bg-purple-950/60 text-purple-800 dark:text-purple-300">
+                    Project Manager & Team Leader
+                  </span>
+                  <span class="text-xs font-mono text-zinc-500">05/2025 – 08/2025</span>
+                </div>
+                <h4 class="text-xl font-bold text-zinc-900 dark:text-white mb-2">
+                  OBOE — Nền tảng Tự học Tiếng Nhật Trực tuyến
+                </h4>
+                <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-4 leading-relaxed" data-i18n="oboe.desc">
+                  Nền tảng hỗ trợ người học tiếng Nhật với công cụ học tương tác, diễn đàn cộng đồng trao đổi kiến thức và tích hợp trợ lý ngôn ngữ AI.
+                </p>
+
+                <div class="space-y-2 text-xs text-zinc-600 dark:text-zinc-300 mb-5" data-i18n="oboe.details">
+                  <p><strong class="text-zinc-900 dark:text-white">Vai trò:</strong> Dẫn dắt nhóm 5 thành viên; lập kế hoạch sprint, phân chia công việc, định hướng UI/UX, ưu tiên tính năng và giám sát quy trình kiểm thử.</p>
+                  <p><strong class="text-zinc-900 dark:text-white">Kỹ thuật:</strong> Trực tiếp lập trình các module backend Java, thiết kế cấu trúc CSDL MySQL và xây dựng giao diện tương tác bằng Vue.js & SCSS.</p>
+                  <p><strong class="text-zinc-900 dark:text-white">Tech Stack:</strong> Java, Vue.js, SCSS, JavaScript, MySQL.</p>
+                </div>
+              </div>
+
+              <div class="pt-4 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
+                <span class="text-[11px] font-mono text-zinc-500">Team 5 members</span>
+                <a href="https://github.com/OboeProjectTeam/OboeProject" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-brand-600 dark:text-brand-400 hover:underline">
+                  <span>github.com/OboeProject</span>
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- HERBAL TEA -->
+            <article class="p-6 sm:p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-3">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300">
+                    Sole Developer
+                  </span>
+                  <span class="text-xs font-mono text-zinc-500">11/2024 – 12/2024</span>
+                </div>
+                <h4 class="text-xl font-bold text-zinc-900 dark:text-white mb-2">
+                  Herbal Tea Website — Ứng dụng Web Giới thiệu & Trải nghiệm Sản phẩm Trà
+                </h4>
+                <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-4 leading-relaxed" data-i18n="herbal.desc">
+                  Trang web giới thiệu sản phẩm trà thảo mộc với giao diện thuần túy tối ưu tốc độ tải và tính phản hồi trên mọi kích cỡ màn hình.
+                </p>
+
+                <div class="space-y-2 text-xs text-zinc-600 dark:text-zinc-300 mb-5" data-i18n="herbal.details">
+                  <p><strong class="text-zinc-900 dark:text-white">Vai trò:</strong> Độc lập thiết kế và xây dựng trọn vẹn từ đầu mà không phụ thuộc framework cồng kềnh.</p>
+                  <p><strong class="text-zinc-900 dark:text-white">Kỹ thuật:</strong> Sử dụng HTML5 ngữ nghĩa, CSS3 Flexbox/Grid responsive, vanilla JavaScript cho các tương tác lọc sản phẩm và giỏ hàng; tối ưu nén tài nguyên và cross-browser testing.</p>
+                  <p><strong class="text-zinc-900 dark:text-white">Tech Stack:</strong> HTML5, CSS3, JavaScript, Responsive Web Design.</p>
+                </div>
+              </div>
+
+              <div class="pt-4 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
+                <span class="text-[11px] font-mono text-zinc-500">Performance & Responsive Focused</span>
+                <span class="text-xs font-mono text-zinc-500">Completed & Archived</span>
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- 5. EXPERIENCE SECTION (TIMELINE) -->
+    <!-- ========================================================================= -->
+    <section id="experience" class="py-16 md:py-24 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-950/30">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-2xl mb-12">
+          <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 mb-2" data-i18n="exp.label">
+            04 // Hành trình nghề nghiệp
+          </h2>
+          <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white" data-i18n="exp.title">
+            Kinh nghiệm Làm việc Thực tế
+          </h3>
+        </div>
+
+        <!-- Vertical Timeline -->
+        <div class="relative border-l border-zinc-200 dark:border-zinc-800 ml-4 md:ml-32 space-y-12">
+
+          <!-- Item 1: Full-stack Developer (~1 year) -->
+          <div class="relative pl-6 md:pl-8 group">
+            <!-- Node Marker -->
+            <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full border-2 border-white dark:border-[#09090b] bg-brand-600 group-hover:scale-125 transition-transform"></div>
+            
+            <!-- Date on left on desktop -->
+            <div class="md:absolute md:-left-36 md:top-1 text-xs font-mono text-zinc-500 mb-1 md:mb-0 md:text-right md:w-28 font-medium">
+              ~1 năm kinh nghiệm
+            </div>
+
+            <div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm space-y-3">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <h4 class="text-base sm:text-lg font-bold text-zinc-900 dark:text-white">
+                    Full-stack Developer
+                  </h4>
+                  <div class="text-xs font-mono text-brand-600 dark:text-brand-400" data-i18n="exp.tingo.company">
+                    Phát triển Sản phẩm & Giải pháp Web
+                  </div>
+                </div>
+                <span class="text-xs px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 font-mono text-zinc-600 dark:text-zinc-400">Full-time</span>
+              </div>
+
+              <ul class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 space-y-2 list-disc list-inside leading-relaxed">
+                <li data-i18n="exp.tingo.bullet1">Một mình đảm nhận toàn bộ vòng đời phát triển sản phẩm thương mại điện tử <strong>Tingo</strong> (từ thiết kế CSDL PostgreSQL, backend Next.js API, frontend React 19 đến triển khai Docker & Nginx).</li>
+                <li data-i18n="exp.tingo.bullet2">Xây dựng trọn vẹn website landing page doanh nghiệp song ngữ <strong>Bluecom</strong> gồm 18 section trang chủ và 7 trang tài liệu kỹ thuật, tối ưu Core Web Vitals và SEO.</li>
+                <li data-i18n="exp.tingo.bullet3">Thiết lập luồng CI/CD tự động trên GitHub Actions: build container, quét bảo mật lỗ hổng với Trivy, deploy SSH lên máy chủ VPS và cấu hình kiểm tra sức khỏe hệ thống (health-check).</li>
+              </ul>
+
+              <div class="pt-2 flex flex-wrap gap-1.5 font-mono text-[11px]">
+                <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">Next.js 16</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">React 19</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">TypeScript</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">Node.js</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">PostgreSQL</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">Docker</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">GitHub Actions</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2: Oboe (PM & Team Lead) -->
+          <div class="relative pl-6 md:pl-8 group">
+            <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full border-2 border-white dark:border-[#09090b] bg-purple-600 group-hover:scale-125 transition-transform"></div>
+            
+            <div class="md:absolute md:-left-36 md:top-1 text-xs font-mono text-zinc-500 mb-1 md:mb-0 md:text-right md:w-28 font-medium">
+              05/2025 – 08/2025
+            </div>
+
+            <div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm space-y-3">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <h4 class="text-base sm:text-lg font-bold text-zinc-900 dark:text-white">
+                    Project Manager & Team Leader
+                  </h4>
+                  <div class="text-xs font-mono text-purple-600 dark:text-purple-400">
+                    Oboe Project (Dự án Nền tảng Học tiếng Nhật)
+                  </div>
+                </div>
+                <span class="text-xs px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 font-mono text-zinc-600 dark:text-zinc-400">Team 5 người</span>
+              </div>
+
+              <ul class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 space-y-2 list-disc list-inside leading-relaxed">
+                <li data-i18n="exp.oboe.bullet1">Dẫn dắt phát triển end-to-end sản phẩm: công cụ học tương tác, diễn đàn cộng đồng thảo luận và trợ lý ngôn ngữ AI.</li>
+                <li data-i18n="exp.oboe.bullet2">Chịu trách nhiệm lập kế hoạch, phân chia công việc theo năng lực thành viên, theo dõi tiến độ và kiểm soát chất lượng qua code review.</li>
+                <li data-i18n="exp.oboe.bullet3">Trực tiếp tham gia lập trình các module xử lý nghiệp vụ backend bằng Java và tích hợp CSDL MySQL.</li>
+              </ul>
+
+              <div class="pt-2 flex flex-wrap gap-1.5 font-mono text-[11px]">
+                <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">Java</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">Vue.js</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">MySQL</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">Project Management</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3: Herbal Tea (Sole Dev) -->
+          <div class="relative pl-6 md:pl-8 group">
+            <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full border-2 border-white dark:border-[#09090b] bg-amber-500 group-hover:scale-125 transition-transform"></div>
+            
+            <div class="md:absolute md:-left-36 md:top-1 text-xs font-mono text-zinc-500 mb-1 md:mb-0 md:text-right md:w-28 font-medium">
+              11/2024 – 12/2024
+            </div>
+
+            <div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm space-y-3">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <h4 class="text-base sm:text-lg font-bold text-zinc-900 dark:text-white">
+                    Sole Developer
+                  </h4>
+                  <div class="text-xs font-mono text-amber-600 dark:text-amber-400">
+                    Herbal Tea Web Application
+                  </div>
+                </div>
+                <span class="text-xs px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 font-mono text-zinc-600 dark:text-zinc-400">Independent</span>
+              </div>
+
+              <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed" data-i18n="exp.herbal.desc">
+                Tự xây dựng ứng dụng web bằng HTML5, CSS3, JavaScript thuần túy; tối ưu bố cục thích ứng (responsive) trên mọi độ phân giải, kiểm thử tính tương thích trình duyệt và tối ưu tốc độ render ban đầu.
+              </p>
+
+              <div class="pt-2 flex flex-wrap gap-1.5 font-mono text-[11px]">
+                <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">HTML5</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">CSS3</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">JavaScript</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">Performance Optimization</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- 6. EDUCATION SECTION -->
+    <!-- ========================================================================= -->
+    <section id="education" class="py-16 md:py-24 border-b border-zinc-200/80 dark:border-zinc-800/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-2xl mb-12">
+          <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 mb-2" data-i18n="edu.label">
+            05 // Nền tảng học vấn
+          </h2>
+          <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white" data-i18n="edu.title">
+            Đào tạo Chuyên ngành Kỹ thuật Phần mềm
+          </h3>
+        </div>
+
+        <div class="p-6 sm:p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-200 dark:border-zinc-800">
+            <div>
+              <span class="text-xs font-mono font-semibold text-brand-600 dark:text-brand-400">10/2022 – 09/2025</span>
+              <h4 class="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white mt-1">
+                BTEC FPT British College
+              </h4>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400 font-medium" data-i18n="edu.major">
+                Chuyên ngành: Software Engineering (Kỹ thuật Phần mềm)
+              </p>
+            </div>
+            <div class="text-xs font-mono px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 w-fit">
+              Hà Nội, Việt Nam
+            </div>
+          </div>
+
+          <div class="pt-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-zinc-600 dark:text-zinc-300">
+            <div class="space-y-1.5">
+              <h5 class="font-bold text-zinc-900 dark:text-white font-mono" data-i18n="edu.col1.title">Nền tảng Cốt lõi</h5>
+              <p class="leading-relaxed" data-i18n="edu.col1.desc">Lập trình hướng đối tượng (OOP), Cấu trúc dữ liệu & Giải thuật (DSA), Design Patterns trong kỹ nghệ phần mềm.</p>
+            </div>
+            <div class="space-y-1.5">
+              <h5 class="font-bold text-zinc-900 dark:text-white font-mono" data-i18n="edu.col2.title">Hệ thống & Cơ sở dữ liệu</h5>
+              <p class="leading-relaxed" data-i18n="edu.col2.desc">Thiết kế chuẩn hóa cơ sở dữ liệu quan hệ, tối ưu truy vấn, quản trị giao dịch ACID và bảo mật ứng dụng web căn bản.</p>
+            </div>
+            <div class="space-y-1.5">
+              <h5 class="font-bold text-zinc-900 dark:text-white font-mono" data-i18n="edu.col3.title">Quy trình Phần mềm (SDLC)</h5>
+              <p class="leading-relaxed" data-i18n="edu.col3.desc">Phương pháp luận Agile/Scrum, quản lý mã nguồn Git, kiểm thử phần mềm (Testing) và tinh thần làm việc nhóm kỷ luật.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- 7. CONTACT SECTION -->
+    <!-- ========================================================================= -->
+    <section id="contact" class="py-16 md:py-24 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-950/30">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-2xl mb-12">
+          <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 mb-2" data-i18n="contact.label">
+            06 // Liên hệ hợp tác
+          </h2>
+          <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white" data-i18n="contact.title">
+            Bắt đầu trao đổi về cơ hội việc làm
+          </h3>
+          <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400" data-i18n="contact.subtitle">
+            Tôi luôn sẵn sàng đón nhận các vị trí Full-stack Developer (Next.js / Node.js / PostgreSQL). Hãy để lại lời nhắn hoặc liên hệ trực tiếp qua email bên dưới.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          
+          <!-- Contact Info Cards -->
+          <div class="lg:col-span-5 space-y-4">
+            
+            <!-- Email Item -->
+            <div class="p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm flex items-start gap-3.5">
+              <div class="w-10 h-10 rounded-lg bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="text-xs font-mono text-zinc-400">Email</div>
+                <a href="mailto:trungton883@gmail.com" class="text-sm font-semibold text-zinc-900 dark:text-white hover:text-brand-600 dark:hover:text-brand-400 transition-colors truncate block">
+                  trungton883@gmail.com
+                </a>
+                <button onclick="copyEmail()" class="mt-1 text-xs font-mono text-brand-600 dark:text-brand-400 hover:underline inline-flex items-center gap-1 cursor-pointer">
+                  <span data-i18n="contact.copyEmail">Sao chép email</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Location Item -->
+            <div class="p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm flex items-start gap-3.5">
+              <div class="w-10 h-10 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div>
+                <div class="text-xs font-mono text-zinc-400" data-i18n="contact.locationLabel">Địa điểm làm việc</div>
+                <div class="text-sm font-semibold text-zinc-900 dark:text-white">
+                  Hà Nội, Việt Nam
+                </div>
+                <div class="text-xs text-zinc-500" data-i18n="contact.workType">Sẵn sàng làm việc tại văn phòng hoặc Hybrid</div>
+              </div>
+            </div>
+
+            <!-- Professional Profiles -->
+            <div class="p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm space-y-3">
+              <div class="text-xs font-mono text-zinc-400" data-i18n="contact.channels">Hồ sơ mạng xã hội chuyên nghiệp</div>
+              <div class="flex items-center gap-2">
+                <!-- GitHub -->
+                <a id="profile-github" href="https://github.com/trungton883" target="_blank" rel="noopener noreferrer" class="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-xs font-mono font-medium text-zinc-800 dark:text-zinc-200 transition-colors">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                  </svg>
+                  <span>GitHub</span>
+                </a>
+
+                <!-- LinkedIn -->
+                <a id="profile-linkedin" href="https://linkedin.com/in/trungton" target="_blank" rel="noopener noreferrer" class="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-xs font-mono font-medium text-zinc-800 dark:text-zinc-200 transition-colors">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                  </svg>
+                  <span>LinkedIn</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Direct Message Form -->
+          <div class="lg:col-span-7">
+            <div class="p-6 sm:p-8 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shadow-sm">
+              <h4 class="text-base font-bold text-zinc-900 dark:text-white mb-2" data-i18n="contact.formTitle">
+                Gửi lời nhắn nhanh
+              </h4>
+              <p class="text-xs text-zinc-500 mb-6" data-i18n="contact.formSubtitle">
+                Hệ thống sẽ soạn trực tiếp thư gửi tới trungton883@gmail.com qua ứng dụng mail của bạn.
+              </p>
+
+              <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4 text-xs font-sans">
+                <!-- Honeypot anti-spam field -->
+                <div class="hidden" aria-hidden="true">
+                  <input type="text" name="bot_honey" id="bot_honey" tabindex="-1" autocomplete="off" />
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label for="sender_name" class="block font-medium text-zinc-700 dark:text-zinc-300 mb-1" data-i18n="contact.nameLabel">Họ và tên *</label>
+                    <input type="text" id="sender_name" required placeholder="Nguyen Van A" class="w-full px-3 py-2 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-transparent text-zinc-900 dark:text-white focus:border-brand-500 transition-colors" />
+                  </div>
+                  <div>
+                    <label for="sender_email" class="block font-medium text-zinc-700 dark:text-zinc-300 mb-1" data-i18n="contact.emailLabel">Email của bạn *</label>
+                    <input type="email" id="sender_email" required placeholder="name@company.com" class="w-full px-3 py-2 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-transparent text-zinc-900 dark:text-white focus:border-brand-500 transition-colors" />
+                  </div>
+                </div>
+
+                <div>
+                  <label for="sender_subject" class="block font-medium text-zinc-700 dark:text-zinc-300 mb-1" data-i18n="contact.subjectLabel">Tiêu đề trao đổi</label>
+                  <input type="text" id="sender_subject" placeholder="Cơ hội Full-stack Developer tại công ty..." class="w-full px-3 py-2 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-transparent text-zinc-900 dark:text-white focus:border-brand-500 transition-colors" />
+                </div>
+
+                <div>
+                  <label for="sender_message" class="block font-medium text-zinc-700 dark:text-zinc-300 mb-1" data-i18n="contact.messageLabel">Nội dung chi tiết *</label>
+                  <textarea id="sender_message" rows="4" required placeholder="Xin chào Trung, chúng tôi ấn tượng với các dự án Tingo và Bluecom..." class="w-full px-3 py-2 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-transparent text-zinc-900 dark:text-white focus:border-brand-500 transition-colors"></textarea>
+                </div>
+
+                <div class="flex items-center justify-between pt-2">
+                  <span id="form-feedback" class="text-xs text-emerald-600 dark:text-emerald-400 hidden">Đang mở trình gửi thư...</span>
+                  <button type="submit" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold bg-brand-600 hover:bg-brand-700 text-white transition-colors cursor-pointer ml-auto">
+                    <span data-i18n="contact.submitBtn">Gửi qua Email</span>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ========================================================================= -->
+  <!-- 8. FOOTER -->
+  <!-- ========================================================================= -->
+  <footer class="py-12 bg-white dark:bg-[#09090b] border-t border-zinc-200 dark:border-zinc-800 text-xs text-zinc-500">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <div class="flex items-center gap-3">
+          <span class="w-6 h-6 rounded bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 flex items-center justify-center font-bold text-[10px] font-mono">
+            TT
+          </span>
+          <span class="font-mono text-zinc-700 dark:text-zinc-300">&copy; 2026 Trung Ton. All rights reserved.</span>
+        </div>
+
+        <!-- Footnote details -->
+        <div class="text-center md:text-left text-[11px] text-zinc-400">
+          Designed with clean developer aesthetics &bull; Built with semantic HTML, Tailwind CSS & JavaScript
+        </div>
+
+        <!-- Social Links (including subtle Facebook in footer as requested) -->
+        <div class="flex items-center gap-4 text-xs font-mono">
+          <a href="https://github.com/trungton883" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-900 dark:hover:text-white transition-colors">GitHub</a>
+          <span>&bull;</span>
+          <a href="https://linkedin.com/in/trungton" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-900 dark:hover:text-white transition-colors">LinkedIn</a>
+          <span>&bull;</span>
+          <a href="https://www.facebook.com/lilvanluonyeudoi" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors" title="Facebook cá nhân (chỉ tham khảo)">
+            Facebook
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ========================================================================= -->
+  <!-- CV DOWNLOAD / PREVIEW MODAL -->
+  <!-- ========================================================================= -->
+  <div id="cv-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeCvModalOnBackdrop(event)">
+    <div class="bg-white dark:bg-[#121215] border border-zinc-200 dark:border-zinc-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative text-left" onclick="event.stopPropagation()">
+      
+      <!-- Close Button -->
+      <button onclick="closeCvModal()" class="absolute top-4 right-4 p-1.5 rounded-lg text-zinc-400 hover:text-zinc-700 dark:hover:text-white transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 flex items-center justify-center">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-base font-bold text-zinc-900 dark:text-white">Curriculum Vitae (CV) &mdash; Trung Ton</h4>
+          <span class="text-xs text-zinc-500 font-mono">Full-stack Developer &bull; Updated 2026</span>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 text-xs text-zinc-600 dark:text-zinc-300 space-y-2 mb-5">
+        <div class="flex justify-between">
+          <span class="font-semibold text-zinc-800 dark:text-zinc-200" data-i18n="cv.modalFormat">Định dạng file:</span>
+          <span class="font-mono">PDF Standard (A4)</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="font-semibold text-zinc-800 dark:text-zinc-200" data-i18n="cv.modalContent">Nội dung gồm:</span>
+          <span data-i18n="cv.modalContentValue">Kinh nghiệm Tingo & Bluecom, Tech Stack, BTEC FPT</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="font-semibold text-zinc-800 dark:text-zinc-200" data-i18n="cv.modalContact">Liên hệ trực tiếp:</span>
+          <span class="font-mono">trungton883@gmail.com</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button onclick="window.print()" class="flex-1 py-2.5 px-4 rounded-lg text-xs font-semibold border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200 transition-colors inline-flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+          </svg>
+          <span data-i18n="cv.printBtn">In trang này (Print PDF)</span>
+        </button>
+
+        <a href="mailto:trungton883@gmail.com?subject=Y%C3%AAu%20c%E1%BA%A7u%20CV%20-%20Trung%20Ton%20Fullstack" class="flex-1 py-2.5 px-4 rounded-lg text-xs font-semibold bg-brand-600 hover:bg-brand-700 text-white transition-colors inline-flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          <span data-i18n="cv.requestBtn">Yêu cầu bản PDF qua Email</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <!-- ========================================================================= -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none px-4 py-2.5 rounded-lg bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 text-xs font-mono font-medium shadow-xl flex items-center gap-2">
+    <svg class="w-4 h-4 text-emerald-400 dark:text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+    </svg>
+    <span id="toast-message">Đã sao chép vào bộ nhớ tạm!</span>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- CLIENT JAVASCRIPT: THEME, I18N, INTERACTIONS -->
+  <!-- ========================================================================= -->
+  <script>
+    // -------------------------------------------------------------
+    // 1. BILINGUAL DICTIONARY (VI / EN)
+    // -------------------------------------------------------------
+    const translations = {
+      vi: {
+        'nav.about': 'Giới thiệu',
+        'nav.skills': 'Kỹ năng',
+        'nav.projects': 'Dự án',
+        'nav.experience': 'Kinh nghiệm',
+        'nav.education': 'Học vấn',
+        'nav.contact': 'Liên hệ',
+        'nav.downloadCV': 'Tải CV',
+
+        'hero.status': 'Sẵn sàng nhận cơ hội Full-stack (Hà Nội / Hybrid)',
+        'hero.greeting': 'Xin chào, tôi là Trung Ton.',
+        'hero.role': 'Full-stack Developer',
+        'hero.description': 'Tập trung xây dựng các ứng dụng web thực tế với kiến trúc rõ ràng: từ thiết kế CSDL quan hệ PostgreSQL, Route Handlers bảo mật, giao diện React/Next.js tối ưu trải nghiệm đến tự động hóa đóng gói Docker và CI/CD.',
+        'hero.ctaPrimary': 'Xem các Case Study',
+        'hero.ctaSecondary': 'Liên hệ hợp tác',
+
+        'about.label': '01 // Giới thiệu',
+        'about.title': 'Kỹ sư phần mềm tập trung vào tính thực tế và ổn định',
+        'about.p1': 'Tôi là một Full-stack Developer với gần 1 năm kinh nghiệm thực tế, tốt nghiệp chuyên ngành Software Engineering tại BTEC FPT British College (10/2022 – 09/2025).',
+        'about.p2': 'Điểm mạnh nổi bật của tôi là khả năng đảm nhận toàn diện một mình (end-to-end): từ khảo sát nghiệp vụ, thiết kế cấu trúc CSDL quan hệ chặt chẽ, xây dựng REST API bảo mật, phát triển giao diện người dùng mượt mà cho đến đóng gói container Docker và thiết lập pipeline CI/CD tự động rollback.',
+        'about.p3': 'Tôi tin rằng một phần mềm tốt không chỉ dừng lại ở giao diện bóng bẩy, mà phải giải quyết đúng bài toán kinh doanh, ngăn chặn lỗi từ tầng dữ liệu và giữ được tính nhất quán khi tải thực tế tăng lên.',
+        'about.p4': 'Bên cạnh kỹ thuật cá nhân, tôi từng đảm nhận vai trò Project Manager & Team Leader cho nhóm 5 thành viên trong dự án Oboe (nền tảng tự học tiếng Nhật), tích lũy kinh nghiệm thực tế về phân rã công việc, quản lý tiến độ, định hướng trải nghiệm và review code.',
+
+        'about.card1.title': 'Khả năng làm việc End-to-End',
+        'about.card1.desc': 'Chủ động từ schema PostgreSQL, Route Handlers, giao diện Next.js, đến đóng gói Docker multi-stage và CI/CD.',
+        'about.card2.title': 'Kinh nghiệm Sản phẩm Chạy Thật',
+        'about.card2.desc': 'Đã xây dựng và vận hành e-commerce Tingo (tingo.vietqr.vn) và landing page doanh nghiệp Bluecom (bluecom.vn).',
+        'about.card3.title': 'Lãnh đạo Nhóm & Quản lý Dự án',
+        'about.card3.desc': 'Từng dẫn dắt đội ngũ 5 người, cân bằng giữa tốc độ bàn giao, định hướng trải nghiệm và chất lượng mã nguồn.',
+
+        'skills.label': '02 // Năng lực kỹ thuật',
+        'skills.title': 'Công nghệ & Công cụ làm việc',
+        'skills.subtitle': 'Tập trung vào hệ sinh thái JavaScript/TypeScript hiện đại, kết hợp nền tảng CSDL quan hệ và hạ tầng DevOps.',
+        'skills.filterAll': 'Tất cả (All)',
+        'skills.filterCore': 'Nền tảng & Kỹ năng mềm',
+        'skills.frontend.desc': 'Xây dựng giao diện hướng component, hỗ trợ SSR/SSG, tối ưu hóa Core Web Vitals và khả năng truy cập (a11y).',
+        'skills.backend.desc': 'Thiết kế REST API an toàn, xử lý logic thanh toán, xác thực người dùng và tích hợp dịch vụ bên thứ ba.',
+        'skills.dbdevops.desc': 'Mô hình hóa dữ liệu quan hệ, đảm bảo tính toàn vẹn giao dịch và tự động hóa chu kỳ triển khai phần mềm.',
+        'skills.fundamentals.title': 'Kiến thức Nền tảng & Bảo mật',
+        'skills.fundamentals.desc': 'Nắm chắc các nguyên lý kỹ thuật cốt lõi giúp viết mã nguồn dễ bảo trì, mở rộng và hạn chế lỗ hổng bảo mật.',
+        'skills.softskills.title': 'Kỹ năng mềm & Năng lực Quản lý',
+        'skills.softskills.desc': 'Kinh nghiệm thực chiến trong giao tiếp kỹ thuật, điều phối nhóm và nghiên cứu công nghệ mới phục vụ sản phẩm.',
+        'skills.softskills.item1': '<strong>Quản lý dự án & Team Lead:</strong> Lập kế hoạch sprint, phân chia task và review PR cho nhóm 5 người.',
+        'skills.softskills.item2': '<strong>Đọc hiểu tài liệu kỹ thuật:</strong> Tiếp cận nhanh các RFC, specs API, migration guides từ tiếng Anh.',
+        'skills.softskills.item3': '<strong>Khả năng tự học & thích ứng:</strong> Độc lập giải quyết các vấn đề chưa từng gặp thông qua phân tích kỹ thuật.',
+        'skills.softskills.item4': '<strong>Giao tiếp minh bạch:</strong> Báo cáo tiến độ rõ ràng, chỉ rõ rủi ro kỹ thuật và phương án dự phòng.',
+
+        'projects.label': '03 // Dự án nổi bật',
+        'projects.title': 'Case Studies Kỹ thuật Chuyên sâu',
+        'projects.subtitle': 'Mỗi dự án phản ánh cách tiếp cận bài toán, các quyết định kiến trúc, đánh đổi thực tế và kinh nghiệm thu được sau khi triển khai lên môi trường sản xuất.',
+        'cs.overview': 'Tổng quan dự án',
+        'cs.problem': 'Bài toán kinh doanh & Kỹ thuật',
+        'cs.techstack': 'Tech Stack & Kiến trúc sử dụng',
+        'cs.contributions': 'Các đóng góp kỹ thuật cốt lõi (Core Contributions)',
+        'cs.challenges': 'Thách thức Kỹ thuật & Giải pháp Thực tế (4 Deep-Dives)',
+        'cs.role': 'Vai trò & Đóng góp',
+
+        'tingo.overview': 'Tingo là website thương mại điện tử chuyên cung cấp thiết bị loa thông báo thanh toán dành cho chủ cửa hàng kinh doanh. Nền tảng phục vụ cả hai luồng người dùng: khách mua lẻ vãng lai và cộng tác viên (CTV) thuộc mạng lưới đối tác, tích hợp cổng quản trị nội bộ đầy đủ nghiệp vụ.',
+        'tingo.problem': 'Cần một hệ thống hoàn chỉnh cho phép khách hàng đặt mua và thanh toán qua QR tự động 24/7; đồng thời cung cấp cổng CTV có cơ chế gắn mã giới thiệu, ghi nhận hoa hồng và duyệt đơn trả sau; phân quyền chặt chẽ cho ban quản trị theo dõi doanh số, quản lý kho và đối soát thanh toán minh bạch mà không phụ thuộc vào các nền tảng thương mại bên ngoài.',
+        'tingo.archTitle': 'Sơ đồ Kiến trúc Hệ thống Tingo (High-Level Architecture)',
+        'tingo.archNote': 'Không lộ thông tin nhạy cảm nội bộ',
+        'tingo.c1.title': 'Thiết kế CSDL PostgreSQL (~16 bảng quan hệ)',
+        'tingo.c1.desc': 'Quản lý thực thể: đơn hàng, khách hàng, CTV, biến thể sản phẩm, tồn kho, lịch sử giao dịch và nhật ký thay đổi. Sử dụng soft-delete và transaction cho toàn bộ luồng tạo đơn và xác nhận thanh toán.',
+        'tingo.c2.title': 'Luồng thanh toán VietQR & Đối soát Webhook tự động',
+        'tingo.c2.desc': 'Tạo mã QR động gắn mã đơn hàng duy nhất; webhook đối soát khớp tiền và chuyển trạng thái đơn hàng tự động ngay khi ngân hàng xác nhận, giảm tải can thiệp thủ công.',
+        'tingo.c3.title': 'Phân quyền 3 cấp (Role-Based Access Control)',
+        'tingo.c3.desc': 'Khách vãng lai thanh toán trước; CTV có mã giới thiệu, theo dõi hoa hồng và chính sách trả sau; Quản trị viên phân tách quyền quản lý đơn, kiểm kho và phân tích doanh thu.',
+        'tingo.c4.title': 'Trang quản trị (Admin Dashboard & Audit Trail)',
+        'tingo.c4.desc': 'Trực quan hóa dữ liệu qua biểu đồ Recharts, xuất báo cáo CSV/Excel, và cơ chế ghi log lịch sử thay đổi dạng trước/sau (before/after snapshot) để phục vụ kiểm toán nội bộ.',
+        'tingo.c5.title': 'CI/CD Pipeline 4 giai đoạn & Tự động Rollback',
+        'tingo.c5.desc': 'Xây dựng pipeline GitHub Actions gồm: Build & Test → Quét bảo mật container với Trivy → Deploy tự động qua SSH lên VPS Nginx → Health-check endpoint; tự động rollback phiên bản trước nếu health-check thất bại.',
+        
+        'tingo.ch1.title': 'Tồn kho ảo do giỏ hàng bị bỏ dở (Ghost Inventory)',
+        'tingo.ch1.body': '<p><strong class="text-zinc-800 dark:text-zinc-200">Vấn đề:</strong> Nếu trừ kho ngay khi người dùng bấm "Đặt hàng", giỏ hàng bị bỏ dở sẽ giữ chân tồn kho, khiến khách hàng thực sự khác không thể mua được.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Giải pháp:</strong> Chỉ thực hiện trừ kho khi hệ thống nhận webhook thanh toán thành công, đặt toàn bộ cập nhật trạng thái đơn và giảm số lượng kho trong cùng một CSDL Transaction có tính toàn vẹn cao.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Đánh đổi & Bài học:</strong> Chấp nhận khả năng oversell hy hữu nếu nhiều khách hàng quét mã thanh toán cùng lúc cho món hàng cuối cùng. Đã thiết kế sẵn hướng cải tiến: cơ chế giữ hàng có thời hạn (temporary reservation với TTL và hàng đợi xử lý timeout).</p>',
+        
+        'tingo.ch2.title': 'Chống sửa đổi giá từ Client (Zero-trust Price Tampering)',
+        'tingo.ch2.body': '<p><strong class="text-zinc-800 dark:text-zinc-200">Vấn đề:</strong> Kẻ tấn công có thể can thiệp payload gửi lên API để sửa đơn giá hoặc tổng tiền thanh toán xuống mức thấp.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Giải pháp:</strong> Server coi client là hoàn toàn không đáng tin cậy. Route Handler chỉ nhận danh sách mã sản phẩm và số lượng mua. Server tự truy vấn giá gốc từ CSDL, kiểm tra chính sách chiết khấu của CTV theo phiên đăng nhập, tự tính phí vận chuyển và xuất ra tổng tiền chốt để sinh mã QR.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Bài học:</strong> Loại bỏ hoàn toàn lỗ hổng sai lệch giá tiền, bảo vệ doanh thu kinh doanh ngay từ kiến trúc API.</p>',
+
+        'tingo.ch3.title': 'Chống Bot Spam mà không làm giảm UX (Captcha-less)',
+        'tingo.ch3.body': '<p><strong class="text-zinc-800 dark:text-zinc-200">Vấn đề:</strong> Form đặt hàng cần đơn giản tối đa để tăng tỷ lệ chuyển đổi, tránh gây phiền hà bởi CAPTCHA nhưng vẫn phải chặn bot spam sinh đơn ảo.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Giải pháp:</strong> Kết hợp trường bẫy ẩn (honeypot fields), thuật toán rate limiting theo địa chỉ IP và số điện thoại, validate schema bằng Zod và luôn dùng truy vấn tham số hóa chống SQL Injection.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Đánh đổi & Bài học:</strong> Hiện tại bộ đếm rate limit lưu trong bộ nhớ server (in-memory sliding window). Khi quy mô hệ thống mở rộng nhiều container, sẽ nâng cấp chuyển sang Redis cluster phân tán.</p>',
+
+        'tingo.ch4.title': 'Bảo mật Webhook & Phòng chống Timing Attack',
+        'tingo.ch4.body': '<p><strong class="text-zinc-800 dark:text-zinc-200">Vấn đề:</strong> Endpoint webhook ngân hàng tiếp nhận tín hiệu thanh toán là mục tiêu giả mạo nguy hiểm; việc kiểm tra secret bằng phép so sánh chuỗi thông thường có nguy cơ rò rỉ qua tấn công thời gian (timing attacks).</p><p><strong class="text-zinc-800 dark:text-zinc-200">Giải pháp:</strong> Sử dụng hàm so sánh thời gian hằng số (crypto.timingSafeEqual) để đối chiếu webhook secret. Áp dụng cơ chế fail-closed: tự động từ chối ngay mọi request nếu môi trường thiếu khóa secret hoặc payload sai lệch định dạng.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Bài học:</strong> Bảo vệ tuyệt đối cổng nhận tiền, không có tình trạng giả mạo giao dịch thành công.</p>',
+
+        'tingo.previewTitle': 'Giao diện Đặt hàng & Cổng Quản trị Tingo',
+        'tingo.previewDesc': 'Hệ thống đang phục vụ khách hàng thật trên môi trường production. Bạn có thể trải nghiệm trực tiếp luồng mua hàng và giao diện người dùng tại liên kết bên dưới.',
+        'tingo.previewBtn': 'Truy cập Tingo Live',
+
+        'bluecom.overview': 'Website giới thiệu giải pháp thanh toán QR và hệ sinh thái giải pháp số của công ty Bluecom. Bao gồm trang chủ đa section với nhiều tương tác hiện đại và 7 trang tài liệu hướng dẫn tích hợp chi tiết (API, phần mềm, thiết bị), hỗ trợ song ngữ Tiếng Việt và Tiếng Anh.',
+        'bluecom.role': 'Thực hiện một mình toàn bộ dự án từ hiện thực hóa giao diện, micro-interactions, tối ưu SEO, quốc tế hóa với next-intl, form tư vấn validate Zod kết hợp honeypot, đến đóng gói Docker multi-stage và CI/CD deploy tự động kèm thông báo Telegram.',
+        'bluecom.chTitle': 'Thách thức Kỹ thuật & Giải pháp Thực tế (3 Deep-Dives)',
+        'bluecom.ch1.title': '1. Animation bị mất ở bản build Tailwind CSS v4',
+        'bluecom.ch1.body': '<p><strong class="text-zinc-800 dark:text-zinc-200">Vấn đề:</strong> Trong Tailwind CSS v4 với cấu hình mới bằng CSS, một số animation tùy biến bị loại bỏ khỏi gói build production do cơ chế purge.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Giải pháp:</strong> Định nghĩa trực tiếp các keyframes và animation vào chỉ thị @theme inline trong file CSS gốc, đảm bảo trình biên dịch luôn nhận diện và bundle đầy đủ hiệu ứng vào output CSS cuối.</p>',
+        'bluecom.ch2.title': '2. Định tuyến đa ngôn ngữ chuẩn SEO (next-intl)',
+        'bluecom.ch2.body': '<p><strong class="text-zinc-800 dark:text-zinc-200">Vấn đề:</strong> Cần hỗ trợ song ngữ Tiếng Việt và Tiếng Anh liền mạch nhưng URL tiếng Việt mặc định không được có tiền tố thừa /vi để tối ưu SEO nội địa.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Giải pháp:</strong> Cấu hình middleware localePrefix: "as-needed", kết hợp thẻ hreflang chuẩn và metadata động đồng bộ với sitemap XML và schema JSON-LD.</p>',
+        'bluecom.ch3.title': '3. Fixed Header che khuất tiêu đề khi scroll anchor',
+        'bluecom.ch3.body': '<p><strong class="text-zinc-800 dark:text-zinc-200">Vấn đề:</strong> Header cố định ở đỉnh màn hình khiến các liên kết cuộn trang (#section-id) bị che mất phần đầu nội dung khi nhảy tới vị trí tương ứng.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Giải pháp:</strong> Áp dụng thuộc tính CSS hiện đại scroll-margin-top đồng nhất cho tất cả các thẻ section, đảm bảo cuộn mượt mà và tiêu đề luôn hiển thị với khoảng đệm hợp lý bên dưới header.</p>',
+
+        'oboe.desc': 'Nền tảng hỗ trợ người học tiếng Nhật với công cụ học tương tác, diễn đàn cộng đồng trao đổi kiến thức và tích hợp trợ lý ngôn ngữ AI.',
+        'oboe.details': '<p><strong class="text-zinc-900 dark:text-white">Vai trò:</strong> Dẫn dắt nhóm 5 thành viên; lập kế hoạch sprint, phân chia công việc, định hướng UI/UX, ưu tiên tính năng và giám sát quy trình kiểm thử.</p><p><strong class="text-zinc-900 dark:text-white">Kỹ thuật:</strong> Trực tiếp lập trình các module backend Java, thiết kế cấu trúc CSDL MySQL và xây dựng giao diện tương tác bằng Vue.js & SCSS.</p><p><strong class="text-zinc-900 dark:text-white">Tech Stack:</strong> Java, Vue.js, SCSS, JavaScript, MySQL.</p>',
+
+        'herbal.desc': 'Trang web giới thiệu sản phẩm trà thảo mộc với giao diện thuần túy tối ưu tốc độ tải và tính phản hồi trên mọi kích cỡ màn hình.',
+        'herbal.details': '<p><strong class="text-zinc-900 dark:text-white">Vai trò:</strong> Độc lập thiết kế và xây dựng trọn vẹn từ đầu mà không phụ thuộc framework cồng kềnh.</p><p><strong class="text-zinc-900 dark:text-white">Kỹ thuật:</strong> Sử dụng HTML5 ngữ nghĩa, CSS3 Flexbox/Grid responsive, vanilla JavaScript cho các tương tác lọc sản phẩm và giỏ hàng; tối ưu nén tài nguyên và cross-browser testing.</p><p><strong class="text-zinc-900 dark:text-white">Tech Stack:</strong> HTML5, CSS3, JavaScript, Responsive Web Design.</p>',
+
+        'exp.label': '04 // Hành trình nghề nghiệp',
+        'exp.title': 'Kinh nghiệm Làm việc Thực tế',
+        'exp.tingo.company': 'Phát triển Sản phẩm & Giải pháp Web',
+        'exp.tingo.bullet1': 'Một mình đảm nhận toàn bộ vòng đời phát triển sản phẩm thương mại điện tử <strong>Tingo</strong> (từ thiết kế CSDL PostgreSQL, backend Next.js API, frontend React 19 đến triển khai Docker & Nginx).',
+        'exp.tingo.bullet2': 'Xây dựng trọn vẹn website landing page doanh nghiệp song ngữ <strong>Bluecom</strong> gồm 18 section trang chủ và 7 trang tài liệu kỹ thuật, tối ưu Core Web Vitals và SEO.',
+        'exp.tingo.bullet3': 'Thiết lập luồng CI/CD tự động trên GitHub Actions: build container, quét bảo mật lỗ hổng với Trivy, deploy SSH lên máy chủ VPS và cấu hình kiểm tra sức khỏe hệ thống (health-check).',
+        'exp.oboe.bullet1': 'Dẫn dắt phát triển end-to-end sản phẩm: công cụ học tương tác, diễn đàn cộng đồng thảo luận và trợ lý ngôn ngữ AI.',
+        'exp.oboe.bullet2': 'Chịu trách nhiệm lập kế hoạch, phân chia công việc theo năng lực thành viên, theo dõi tiến độ và kiểm soát chất lượng qua code review.',
+        'exp.oboe.bullet3': 'Trực tiếp tham gia lập trình các module xử lý nghiệp vụ backend bằng Java và tích hợp CSDL MySQL.',
+        'exp.herbal.desc': 'Tự xây dựng ứng dụng web bằng HTML5, CSS3, JavaScript thuần túy; tối ưu bố cục thích ứng (responsive) trên mọi độ phân giải, kiểm thử tính tương thích trình duyệt và tối ưu tốc độ render ban đầu.',
+
+        'edu.label': '05 // Nền tảng học vấn',
+        'edu.title': 'Đào tạo Chuyên ngành Kỹ thuật Phần mềm',
+        'edu.major': 'Chuyên ngành: Software Engineering (Kỹ thuật Phần mềm)',
+        'edu.col1.title': 'Nền tảng Cốt lõi',
+        'edu.col1.desc': 'Lập trình hướng đối tượng (OOP), Cấu trúc dữ liệu & Giải thuật (DSA), Design Patterns trong kỹ nghệ phần mềm.',
+        'edu.col2.title': 'Hệ thống & Cơ sở dữ liệu',
+        'edu.col2.desc': 'Thiết kế chuẩn hóa cơ sở dữ liệu quan hệ, tối ưu truy vấn, quản trị giao dịch ACID và bảo mật ứng dụng web căn bản.',
+        'edu.col3.title': 'Quy trình Phần mềm (SDLC)',
+        'edu.col3.desc': 'Phương pháp luận Agile/Scrum, quản lý mã nguồn Git, kiểm thử phần mềm (Testing) và tinh thần làm việc nhóm kỷ luật.',
+
+        'contact.label': '06 // Liên hệ hợp tác',
+        'contact.title': 'Bắt đầu trao đổi về cơ hội việc làm',
+        'contact.subtitle': 'Tôi luôn sẵn sàng đón nhận các vị trí Full-stack Developer (Next.js / Node.js / PostgreSQL). Hãy để lại lời nhắn hoặc liên hệ trực tiếp qua email bên dưới.',
+        'contact.locationLabel': 'Địa điểm làm việc',
+        'contact.workType': 'Sẵn sàng làm việc tại văn phòng hoặc Hybrid',
+        'contact.channels': 'Hồ sơ mạng xã hội chuyên nghiệp',
+        'contact.copyEmail': 'Sao chép email',
+        'contact.formTitle': 'Gửi lời nhắn nhanh',
+        'contact.formSubtitle': 'Hệ thống sẽ soạn trực tiếp thư gửi tới trungton883@gmail.com qua ứng dụng mail của bạn.',
+        'contact.nameLabel': 'Họ và tên *',
+        'contact.emailLabel': 'Email của bạn *',
+        'contact.subjectLabel': 'Tiêu đề trao đổi',
+        'contact.messageLabel': 'Nội dung chi tiết *',
+        'contact.submitBtn': 'Gửi qua Email',
+
+        'cv.modalFormat': 'Định dạng file:',
+        'cv.modalContent': 'Nội dung gồm:',
+        'cv.modalContentValue': 'Kinh nghiệm Tingo & Bluecom, Tech Stack, BTEC FPT',
+        'cv.modalContact': 'Liên hệ trực tiếp:',
+        'cv.printBtn': 'In trang này (Print PDF)',
+        'cv.requestBtn': 'Yêu cầu bản PDF qua Email'
+      },
+
+      en: {
+        'nav.about': 'About',
+        'nav.skills': 'Skills',
+        'nav.projects': 'Projects',
+        'nav.experience': 'Experience',
+        'nav.education': 'Education',
+        'nav.contact': 'Contact',
+        'nav.downloadCV': 'Download CV',
+
+        'hero.status': 'Available for Full-stack Opportunities (Hanoi / Hybrid)',
+        'hero.greeting': 'Hi, I am Trung Ton.',
+        'hero.role': 'Full-stack Developer',
+        'hero.description': 'Focused on building real-world web applications with clean architecture: from PostgreSQL relational schemas and secure Route Handlers to performant React/Next.js interfaces, multi-stage Docker builds, and automated CI/CD pipelines.',
+        'hero.ctaPrimary': 'Explore Case Studies',
+        'hero.ctaSecondary': 'Get in Touch',
+
+        'about.label': '01 // About Me',
+        'about.title': 'Software engineer committed to pragmatism, performance, and stability',
+        'about.p1': 'I am a Full-stack Developer with ~1 year of real-world production experience, graduated in Software Engineering from BTEC FPT British College (10/2022 – 09/2025).',
+        'about.p2': 'My core strength is end-to-end autonomous ownership: scoping business requirements, designing clean relational schemas, building secure REST APIs, crafting intuitive user experiences, containerizing with Docker, and setting up CI/CD pipelines with automated rollback.',
+        'about.p3': 'I believe good software extends far beyond UI aesthetics—it must solve real business problems, enforce data integrity at the database layer, and remain resilient under real traffic.',
+        'about.p4': 'Beyond individual engineering, I served as Project Manager & Team Leader for a 5-member team on the Oboe project (Japanese learning platform), gaining hands-on leadership experience in task breakdown, sprint tracking, UX direction, and code reviews.',
+
+        'about.card1.title': 'End-to-End Ownership',
+        'about.card1.desc': 'Autonomous from PostgreSQL schema and Route Handlers to Next.js UI, multi-stage Docker, and CI/CD.',
+        'about.card2.title': 'Production-Tested Experience',
+        'about.card2.desc': 'Built and shipped live e-commerce Tingo (tingo.vietqr.vn) and enterprise bilingual Bluecom (bluecom.vn).',
+        'about.card3.title': 'Team Leadership & Agile',
+        'about.card3.desc': 'Led a 5-engineer team balancing delivery speed, user experience, and technical code quality.',
+
+        'skills.label': '02 // Technical Skills',
+        'skills.title': 'Technologies & Core Stack',
+        'skills.subtitle': 'Centered around modern JavaScript/TypeScript ecosystem, relational databases, and automated DevOps infrastructure.',
+        'skills.filterAll': 'All Skills',
+        'skills.filterCore': 'Core & Soft Skills',
+        'skills.frontend.desc': 'Component-driven UI, SSR/SSG workflows, Core Web Vitals optimization, and web accessibility (a11y).',
+        'skills.backend.desc': 'Secure REST APIs, payment webhook reconciliation, session auth, and third-party integrations.',
+        'skills.dbdevops.desc': 'Relational data modeling, ACID transaction guarantees, and automated container deployment lifecycles.',
+        'skills.fundamentals.title': 'Engineering Core & Security',
+        'skills.fundamentals.desc': 'Firm mastery of computing fundamentals ensuring maintainable, scalable, and vulnerability-free code.',
+        'skills.softskills.title': 'Soft Skills & Leadership',
+        'skills.softskills.desc': 'Practical experience in engineering communication, team coordination, and fast technical onboarding.',
+        'skills.softskills.item1': '<strong>Project Management & Team Lead:</strong> Sprint planning, task assignment, and PR reviews for 5 members.',
+        'skills.softskills.item2': '<strong>Technical Documentation:</strong> Fast comprehension of RFCs, API specs, and migration guides in English.',
+        'skills.softskills.item3': '<strong>Fast Learner & Adaptability:</strong> Independently resolving novel edge-cases via root-cause debugging.',
+        'skills.softskills.item4': '<strong>Transparent Communication:</strong> Clear progress reporting, highlighting technical risks and contingencies.',
+
+        'projects.label': '03 // Featured Work',
+        'projects.title': 'In-depth Engineering Case Studies',
+        'projects.subtitle': 'Each project illustrates problem framing, architectural decisions, practical tradeoffs, and lessons learned in production environments.',
+        'cs.overview': 'Project Overview',
+        'cs.problem': 'Business & Technical Challenges',
+        'cs.techstack': 'Tech Stack & Architecture',
+        'cs.contributions': 'Core Technical Contributions',
+        'cs.challenges': 'Real-world Engineering Challenges & Solutions (4 Deep-Dives)',
+        'cs.role': 'Role & Contributions',
+
+        'tingo.overview': 'Tingo is an e-commerce platform selling smart payment speaker devices to retail merchants. The system handles two parallel workflows: guest consumer purchases and partner bank agents (CTV) with affiliate tracking, paired with an internal administrative back-office.',
+        'tingo.problem': 'Required a resilient system allowing customers to place orders and pay via dynamic QR 24/7; providing partner agents with referral attribution, commission tracking, and post-pay approvals; and equipping admins with analytics, stock control, and transparent audit logs.',
+        'tingo.archTitle': 'Tingo High-Level System Architecture Diagram',
+        'tingo.archNote': 'Sanitized high-level architectural overview',
+        'tingo.c1.title': 'PostgreSQL Database Design (~16 Relational Tables)',
+        'tingo.c1.desc': 'Entity management: orders, customers, agents, product variants, inventory, audit logs. Implemented soft deletes and ACID transactions across order creation and settlement.',
+        'tingo.c2.title': 'VietQR Payment Flow & Automated Webhook Reconciliation',
+        'tingo.c2.desc': 'Dynamic QR code generation with unique order identifiers; webhooks reconcile incoming transfers and transition order states automatically upon banking confirmation.',
+        'tingo.c3.title': '3-Tier Role-Based Access Control (RBAC)',
+        'tingo.c3.desc': 'Guest checkout with upfront payment; affiliate agents with referral codes and post-pay terms; back-office admins with isolated permissions for logistics and sales analytics.',
+        'tingo.c4.title': 'Admin Dashboard & Before/After Audit Trail',
+        'tingo.c4.desc': 'Visualized revenue analytics using Recharts, CSV/Excel data export, and before/after state diff snapshots for internal accountability.',
+        'tingo.c5.title': '4-Stage CI/CD Pipeline & Automated Rollback',
+        'tingo.c5.desc': 'Engineered GitHub Actions workflow: Build & Test → Container security vulnerability scan with Trivy → SSH deploy to Nginx VPS → Health-check with automated rollback upon failure.',
+        
+        'tingo.ch1.title': 'Ghost Inventory From Abandoned Checkouts',
+        'tingo.ch1.body': '<p><strong class="text-zinc-800 dark:text-zinc-200">The Problem:</strong> Decrementing stock immediately upon "Place Order" leads to locked inventory from abandoned carts, turning away real buyers.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Technical Solution:</strong> Decrement stock strictly when receiving a verified payment webhook, wrapping order status updates and stock reduction within a single atomic ACID database transaction.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Trade-off & Mitigation:</strong> Accepts rare edge-case overselling if multiple shoppers pay simultaneously for the final item. Prepared upgrade roadmap: time-limited reservation holds with TTL queues.</p>',
+
+        'tingo.ch2.title': 'Zero-Trust Client-Side Price Tampering',
+        'tingo.ch2.body': '<p><strong class="text-zinc-800 dark:text-zinc-200">The Problem:</strong> Malicious users can intercept and modify payload values to submit arbitrary low prices.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Technical Solution:</strong> Server treats all client input as untrusted. Route Handlers accept only product IDs and quantities; the server looks up authoritative prices from PostgreSQL, applies agent discount rules based on session auth, calculates shipping, and generates the final QR payable amount.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Lesson Learned:</strong> Eliminates financial loss and pricing discrepancies by enforcing business rules strictly on the server.</p>',
+
+        'tingo.ch3.title': 'CAPTCHA-less Bot and Spam Mitigation',
+        'tingo.ch3.body': '<p><strong class="text-zinc-800 dark:text-zinc-200">The Problem:</strong> Frictionless single-page checkout is vital for conversion, but vulnerable to automated spam orders if CAPTCHA is removed.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Technical Solution:</strong> Layered defense utilizing hidden honeypot fields, rate limiting based on client IP and phone number, strict Zod schema validation, and parameterized SQL queries.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Trade-off & Roadmap:</strong> Rate limit counters currently reside in server memory (sliding window). Designed to transition seamlessly to a distributed Redis cluster when scaling out across multiple containers.</p>',
+
+        'tingo.ch4.title': 'Webhook Security & Constant-Time Verification',
+        'tingo.ch4.body': '<p><strong class="text-zinc-800 dark:text-zinc-200">The Problem:</strong> Payment webhook endpoints are high-value targets; standard string comparison exposes secret keys to timing-attack vulnerabilities.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Technical Solution:</strong> Verifies incoming webhook secrets using cryptographic constant-time comparison (crypto.timingSafeEqual). Enforces fail-closed error handling: immediately rejects any request if secrets are unconfigured or payload formats mismatch.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Lesson Learned:</strong> Guaranteed protection against spoofed payment notifications and forged transaction approvals.</p>',
+
+        'tingo.previewTitle': 'Tingo Checkout & Admin Back-office Preview',
+        'tingo.previewDesc': 'Operating actively in production. You can explore the user interface and checkout experience directly via the live link below.',
+        'tingo.previewBtn': 'Visit Tingo Live',
+
+        'bluecom.overview': 'Corporate website showcasing QR payment solutions and product ecosystem for Bluecom. Features an interactive multi-section landing page and 7 technical documentation guides (API, software, POS devices) in bilingual Vietnamese and English.',
+        'bluecom.role': 'Sole developer handling complete implementation: UI components, micro-interactions, SEO optimization, next-intl localization, Zod-validated contact forms with honeypots, multi-stage Docker builds, and automated CI/CD with Telegram notifications.',
+        'bluecom.chTitle': 'Real-world Engineering Challenges & Solutions (3 Deep-Dives)',
+        'bluecom.ch1.title': '1. Purged Animations in Tailwind CSS v4 Production Builds',
+        'bluecom.ch1.body': '<p><strong class="text-zinc-800 dark:text-zinc-200">The Problem:</strong> Under Tailwind CSS v4 CSS-first configuration, custom animations were dropped during production bundle tree-shaking.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Technical Solution:</strong> Injected custom keyframes directly into the root stylesheet via @theme inline directives, ensuring the build pipeline recognizes and preserves all keyframes in production CSS output.</p>',
+        'bluecom.ch2.title': '2. SEO-Optimized Multilingual Routing (next-intl)',
+        'bluecom.ch2.body': '<p><strong class="text-zinc-800 dark:text-zinc-200">The Problem:</strong> Needed seamless Vietnamese and English support without redundant /vi prefix on the default locale to safeguard domestic organic SEO ranking.</p><p><strong class="text-zinc-800 dark:text-zinc-200">Technical Solution:</strong> Configured middleware with localePrefix: "as-needed", paired with canonical hreflang tags, dynamic localized metadata, and multilingual XML sitemaps.</p>',
+        'bluecom.ch3.title': '3. Sticky Header Clipping Target Content on Anchor Scroll',
+        'bluecom.ch3.body': '<p><strong class="text-zinc-800 dark:text-zinc-200">The Problem:</strong> Fixed navigation headers obscured section headings whenever jumping to internal anchor links (#section-id).</p><p><strong class="text-zinc-800 dark:text-zinc-200">Technical Solution:</strong> Standardized modern CSS scroll-margin-top across all section containers, producing smooth scrolling with comfortable header offset clearance.</p>',
+
+        'oboe.desc': 'Online Japanese self-learning platform featuring interactive study tools, community forums, and AI language assistance.',
+        'oboe.details': '<p><strong class="text-zinc-900 dark:text-white">Role:</strong> Led a 5-member engineering team; managed sprint planning, work breakdown, UI/UX direction, feature prioritization, and testing protocols.</p><p><strong class="text-zinc-900 dark:text-white">Engineering:</strong> Directly authored core Java backend modules, designed MySQL relational schemas, and built interactive Vue.js & SCSS frontend views.</p><p><strong class="text-zinc-900 dark:text-white">Tech Stack:</strong> Java, Vue.js, SCSS, JavaScript, MySQL.</p>',
+
+        'herbal.desc': 'Herbal tea product website built with pure vanilla web technologies, focusing on extreme load speeds and responsive layout.',
+        'herbal.details': '<p><strong class="text-zinc-900 dark:text-white">Role:</strong> Independently designed and engineered from scratch with zero bloated framework dependencies.</p><p><strong class="text-zinc-900 dark:text-white">Engineering:</strong> Semantic HTML5, CSS3 Grid/Flexbox, vanilla JavaScript product filtering and state management; asset minification and cross-browser responsiveness.</p><p><strong class="text-zinc-900 dark:text-white">Tech Stack:</strong> HTML5, CSS3, JavaScript, Responsive Web Design.</p>',
+
+        'exp.label': '04 // Experience',
+        'exp.title': 'Professional Work History',
+        'exp.tingo.company': 'Web Product & Solutions Engineering',
+        'exp.tingo.bullet1': 'Single-handedly managed the complete lifecycle of Tingo e-commerce platform (PostgreSQL schema, Next.js backend APIs, React 19 UI, Docker containerization, and Nginx reverse proxy).',
+        'exp.tingo.bullet2': 'Engineered Bluecom corporate bilingual website with 18 home sections and 7 documentation subpages, optimizing Core Web Vitals and search rankings.',
+        'exp.tingo.bullet3': 'Configured automated 4-stage GitHub Actions CI/CD: build, Trivy vulnerability scan, SSH deployment to VPS, and health-check verification with automated rollback.',
+        'exp.oboe.bullet1': 'Directed end-to-end development of interactive learning modules, community forums, and AI conversational tool.',
+        'exp.oboe.bullet2': 'Formulated sprint milestones, assigned tasks according to member strengths, tracked timelines, and maintained code review standards.',
+        'exp.oboe.bullet3': 'Directly programmed core Java backend modules and integrated relational MySQL databases.',
+        'exp.herbal.desc': 'Independently developed responsive web application with vanilla HTML5, CSS3, and JavaScript; optimized initial render and tested cross-browser compatibility.',
+
+        'edu.label': '05 // Education',
+        'edu.title': 'Software Engineering Academic Background',
+        'edu.major': 'Major: Software Engineering (BTEC Higher National Diploma)',
+        'edu.col1.title': 'Computer Science Core',
+        'edu.col1.desc': 'Object-Oriented Programming (OOP), Data Structures & Algorithms (DSA), and Software Design Patterns.',
+        'edu.col2.title': 'Systems & Databases',
+        'edu.col2.desc': 'Relational database schema normalization, query optimization, ACID transaction management, and web security.',
+        'edu.col3.title': 'Software Lifecycle (SDLC)',
+        'edu.col3.desc': 'Agile/Scrum methodologies, Git version control workflows, unit/integration testing, and disciplined teamwork.',
+
+        'contact.label': '06 // Get In Touch',
+        'contact.title': 'Let’s Discuss Engineering Opportunities',
+        'contact.subtitle': 'I am actively seeking Full-stack Developer roles (Next.js / Node.js / PostgreSQL). Feel free to send a message or contact me directly via email below.',
+        'contact.locationLabel': 'Location',
+        'contact.workType': 'Open to On-site in Hanoi or Hybrid opportunities',
+        'contact.channels': 'Professional Profiles',
+        'contact.copyEmail': 'Copy email',
+        'contact.formTitle': 'Quick Message',
+        'contact.formSubtitle': 'This form will open your default email client addressed to trungton883@gmail.com.',
+        'contact.nameLabel': 'Your Name *',
+        'contact.emailLabel': 'Your Email *',
+        'contact.subjectLabel': 'Subject',
+        'contact.messageLabel': 'Message *',
+        'contact.submitBtn': 'Send via Email',
+
+        'cv.modalFormat': 'File Format:',
+        'cv.modalContent': 'Resume Overview:',
+        'cv.modalContentValue': 'Tingo & Bluecom Case Studies, Full Tech Stack, BTEC FPT',
+        'cv.modalContact': 'Direct Contact:',
+        'cv.printBtn': 'Print this page (PDF)',
+        'cv.requestBtn': 'Request PDF copy via Email'
+      }
+    };
+
+    // Current State
+    let currentLang = 'vi';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      document.getElementById('lang-indicator').textContent = lang.toUpperCase();
+      localStorage.setItem('portfolio_lang', lang);
+
+      // Apply translations to elements with data-i18n attribute
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+    }
+
+    // Language Toggle Listener
+    document.getElementById('lang-toggle-btn').addEventListener('click', () => {
+      const nextLang = currentLang === 'vi' ? 'en' : 'vi';
+      setLanguage(nextLang);
+      showToast(nextLang === 'vi' ? 'Đã chuyển sang Tiếng Việt' : 'Switched to English');
+    });
+
+    // -------------------------------------------------------------
+    // 2. DARK / LIGHT THEME TOGGLE
+    // -------------------------------------------------------------
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const sunIcon = document.getElementById('theme-sun-icon');
+    const moonIcon = document.getElementById('theme-moon-icon');
+
+    function applyTheme(isDark) {
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+        localStorage.setItem('portfolio_theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+        localStorage.setItem('portfolio_theme', 'light');
+      }
+    }
+
+    // Initialize Theme
+    const storedTheme = localStorage.getItem('portfolio_theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(storedTheme ? storedTheme === 'dark' : prefersDark);
+
+    themeToggleBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      applyTheme(!isDark);
+      showToast(!isDark ? 'Chế độ Tối (Dark Mode)' : 'Chế độ Sáng (Light Mode)');
+    });
+
+    // -------------------------------------------------------------
+    // 3. SKILLS INTERACTIVE FILTER
+    // -------------------------------------------------------------
+    function filterSkills(category) {
+      // Update buttons
+      document.querySelectorAll('.skill-filter-btn').forEach(btn => {
+        const filterVal = btn.getAttribute('data-filter');
+        if (filterVal === category) {
+          btn.className = 'skill-filter-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium border border-zinc-900 dark:border-zinc-100 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 transition-colors cursor-pointer';
+        } else {
+          btn.className = 'skill-filter-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#121215] text-zinc-600 dark:text-zinc-400 hover:border-zinc-400 transition-colors cursor-pointer';
+        }
+      });
+
+      // Show/hide cards
+      document.querySelectorAll('.skill-card').forEach(card => {
+        const cardCat = card.getAttribute('data-category');
+        if (category === 'all' || cardCat === category) {
+          card.style.display = 'flex';
+          card.style.opacity = '1';
+        } else {
+          card.style.display = 'none';
+          card.style.opacity = '0';
+        }
+      });
+    }
+
+    // -------------------------------------------------------------
+    // 4. MOBILE MENU INTERACTION
+    // -------------------------------------------------------------
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+      mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+      mobileMenu.classList.toggle('hidden');
+      menuIconOpen.classList.toggle('hidden');
+      menuIconClose.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when link is clicked
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIconOpen.classList.remove('hidden');
+        menuIconClose.classList.add('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // -------------------------------------------------------------
+    // 5. TOAST NOTIFICATION HELPER
+    // -------------------------------------------------------------
+    let toastTimeout;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2500);
+    }
+
+    // -------------------------------------------------------------
+    // 6. COPY EMAIL CLIPBOARD
+    // -------------------------------------------------------------
+    function copyEmail() {
+      const email = 'trungton883@gmail.com';
+      navigator.clipboard.writeText(email).then(() => {
+        showToast(currentLang === 'vi' ? 'Đã sao chép email: ' + email : 'Copied email to clipboard: ' + email);
+      }).catch(() => {
+        showToast('trungton883@gmail.com');
+      });
+    }
+
+    // -------------------------------------------------------------
+    // 7. CV MODAL HANDLERS
+    // -------------------------------------------------------------
+    function openCvModal() {
+      document.getElementById('cv-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCvModal() {
+      document.getElementById('cv-modal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    function closeCvModalOnBackdrop(e) {
+      if (e.target.id === 'cv-modal') {
+        closeCvModal();
+      }
+    }
+
+    // Keyboard ESC listener
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeCvModal();
+      }
+    });
+
+    // -------------------------------------------------------------
+    // 8. CONTACT FORM SUBMISSION
+    // -------------------------------------------------------------
+    function handleContactSubmit(event) {
+      event.preventDefault();
+      
+      // Check Honeypot
+      const honey = document.getElementById('bot_honey').value;
+      if (honey) {
+        console.warn('Bot detected via honeypot');
+        return;
+      }
+
+      const name = document.getElementById('sender_name').value.trim();
+      const email = document.getElementById('sender_email').value.trim();
+      const subject = document.getElementById('sender_subject').value.trim() || 'Trao đổi cơ hội việc làm Full-stack';
+      const message = document.getElementById('sender_message').value.trim();
+
+      const body = `Họ và tên: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0ALời nhắn:%0D%0A${encodeURIComponent(message)}`;
+      const mailtoUrl = `mailto:trungton883@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+      const feedback = document.getElementById('form-feedback');
+      feedback.classList.remove('hidden');
+      
+      setTimeout(() => {
+        window.location.href = mailtoUrl;
+      }, 400);
+    }
+
+    // -------------------------------------------------------------
+    // 9. INITIALIZATION ON DOM READY
+    // -------------------------------------------------------------
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('portfolio_lang');
+      if (savedLang && (savedLang === 'vi' || savedLang === 'en')) {
+        setLanguage(savedLang);
+      } else {
+        setLanguage('vi');
+      }
+    });
+  </script>
+
+</body>
+</html>
