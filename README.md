@@ -21,7 +21,7 @@
   <a href="mailto:trungton883@gmail.com">
     <img src="https://img.shields.io/badge/Email-trungton883%40gmail.com-blue?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
   </a>
-  <a href="https://linkedin.com/in/trungton" target="_blank">
+  <a href="https://www.linkedin.com/in/to-trung-ton-0617ba341/" target="_blank">
     <img src="https://img.shields.io/badge/LinkedIn-Trung_Ton-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
   </a>
   <a href="https://github.com/trungton204" target="_blank">
@@ -109,7 +109,7 @@ Nếu Quý công ty đang tìm kiếm một vị trí **Full-stack Developer** c
 
 * 📧 **Email:** [trungton883@gmail.com](mailto:trungton883@gmail.com)
 * 📍 **Địa điểm:** Hà Nội, Việt Nam
-* 💼 **LinkedIn:** [linkedin.com/in/trungton](https://linkedin.com/in/trungton)
+* 💼 **LinkedIn:** [linkedin.com/in/to-trung-ton-0617ba341](https://www.linkedin.com/in/to-trung-ton-0617ba341/)
 * 🐙 **GitHub:** [github.com/trungton204](https://github.com/trungton204)
 
 *Trân trọng cảm ơn Quý Anh/Chị đã dành thời gian xem hồ sơ!*
@@ -128,5 +128,5 @@ Nếu Quý công ty đang tìm kiếm một vị trí **Full-stack Developer** c
 - **Leadership:** Led a 5-engineer team as Project Manager & Team Leader on **Oboe** (online Japanese learning platform).
 - **Core Strengths:** End-to-end autonomy, zero-trust backend API security, relational database design with ACID integrity, multi-stage Docker containerization, and clean software architecture.
 - **Availability:** Open for Full-time roles (On-site in Hanoi, Hybrid, or Remote).
-- **Contact:** [trungton883@gmail.com](mailto:trungton883@gmail.com) | [LinkedIn](https://linkedin.com/in/trungton)
+- **Contact:** [trungton883@gmail.com](mailto:trungton883@gmail.com) | [LinkedIn](https://www.linkedin.com/in/to-trung-ton-0617ba341/)
 </details>
